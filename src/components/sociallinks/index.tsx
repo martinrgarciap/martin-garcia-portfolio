@@ -1,8 +1,20 @@
 import IconBtn from "@/components/iconbtn";
 
-const SocialLinks = () => (
-  <div className="flex items-center gap-3 m-3">
-    <IconBtn href="https://github.com/martinrgarciap" label="GitHub">
+type SocialLinksProps = {
+  className?: string;
+  iconClassName?: string;
+};
+
+const SocialLinks = ({
+  className = "",
+  iconClassName = "",
+}: SocialLinksProps) => (
+  <div className={`flex items-center gap-3 m-3 ${className}`}>
+    <IconBtn
+      href="https://github.com/martinrgarciap"
+      label="GitHub"
+      className={iconClassName}
+    >
       <svg
         viewBox="0 0 24 24"
         className="h-5 w-5 fill-current"
@@ -15,6 +27,7 @@ const SocialLinks = () => (
     <IconBtn
       href="https://www.linkedin.com/in/martin-garcia-prieto/"
       label="LinkedIn"
+      className={iconClassName}
     >
       <svg
         viewBox="0 0 24 24"
@@ -25,7 +38,11 @@ const SocialLinks = () => (
       </svg>
     </IconBtn>
 
-    <IconBtn href="https://linktr.ee/martinrgarciap" label="Linktree">
+    <IconBtn
+      href="https://linktr.ee/martinrgarciap"
+      label="Linktree"
+      className={iconClassName}
+    >
       <svg
         viewBox="0 0 24 24"
         className="h-5 w-5 fill-current"

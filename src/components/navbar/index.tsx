@@ -1,3 +1,4 @@
+import SocialLinks from "@/components/sociallinks";
 import Link from "next/link";
 
 import NavLink from "./navlink";
@@ -15,7 +16,13 @@ const NavBar = () => (
         <NavLink href="/" text="Home" />
         <NavLink href="/about" text="About Me" />
         <NavLink href="/projects" text="Projects" />
-        <NavLink href="/socials" text="Socials" />
+        <SocialLinks
+          iconClassName="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white/10
+               transition hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30
+               text-[#334155] hover:bg-white/70 hover:text-[#0F172A]
+               
+               "
+        />
       </nav>
     </div>
   </header>
