@@ -1,31 +1,258 @@
-import SocialLinks from "@/components/sociallinks";
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import * as React from "react";
 
-import NavLink from "./navlink";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import { useTheme } from "@mui/material/styles";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-const NavBar = () => (
-  <header className="sticky top-0 z-50 border-b border-black/10 bg-white/70 backdrop-blur">
-    <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
-      <Link
-        href="/"
-        className="rounded-lg bg-[#0F172A] px-3 py-2 font-bold text-white shadow-sm transition hover:brightness-95"
+import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
+
+import { SocialLinks } from "@/components"; // adjust if needed
+
+const NAV_BG = "rgba(255,255,255,0.70)"; // matches your nav vibe
+const DRAWER_BG = "#0B1220"; // match your hero background
+
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "About Me", href: "/about" },
+  { label: "Projects", href: "/projects" },
+];
+
+export default function NavBar() {
+  const pathname = usePathname();
+  const theme = useTheme();
+
+  // ✅ Change this breakpoint to control when hamburger appears:
+  // "md" = hamburger below ~900px, "sm" = below ~600px
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+  const [open, setOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (isDesktop) setOpen(false);
+  }, [isDesktop]);
+
+  const DesktopLinks = (
+    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+      {navItems.map((item) => {
+        const active = pathname === item.href;
+        return (
+          <Box
+            key={item.href}
+            component={Link}
+            href={item.href}
+            style={{ textDecoration: "none" }}
+          >
+            <Box
+              sx={{
+                px: 1.5,
+                py: 1,
+                borderRadius: 2,
+                fontWeight: 700,
+                fontSize: 14,
+                color: active ? "white" : "#0F172A",
+                backgroundColor: active ? "#0F172A" : "rgba(0,0,0,0.04)",
+                "&:hover": {
+                  backgroundColor: active ? "#0F172A" : "rgba(0,0,0,0.08)",
+                },
+              }}
+            >
+              {item.label}
+            </Box>
+          </Box>
+        );
+      })}
+
+      <SocialLinks
+        className="ml-2"
+        iconClassName="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-black/5 text-[#334155] transition hover:bg-black/10 hover:text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-black/10"
+      />
+    </Box>
+  );
+
+  const DrawerContent = (
+    <Box
+      sx={{
+        height: "100vh",
+        width: "100vw",
+        backgroundColor: DRAWER_BG,
+        color: "white",
+        display: "flex",
+        flexDirection: "column",
+      }}
+      role="presentation"
+    >
+      {/* Header */}
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          px: 2,
+          py: 2,
+        }}
       >
-        <div>Martin Garcia Portfolio</div>
-      </Link>
-      <nav className="flex items-center">
-        <NavLink href="/" text="Home" />
-        <NavLink href="/about" text="About Me" />
-        <NavLink href="/projects" text="Projects" />
-        <SocialLinks
-          iconClassName="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white/10
-               transition hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30
-               text-[#334155] hover:bg-white/70 hover:text-[#0F172A]
-               
-               "
-        />
-      </nav>
-    </div>
-  </header>
-);
+        <Typography variant="h6" sx={{ fontWeight: 800 }}>
+          Menu
+        </Typography>
 
-export default NavBar;
+        <IconButton
+          aria-label="Close menu"
+          onClick={() => setOpen((v) => !v)}
+          sx={{
+            color: "white",
+            borderRadius: 2,
+            backgroundColor: "rgba(255,255,255,0.10)",
+            "&:hover": { backgroundColor: "rgba(255,255,255,0.14)" },
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      </Box>
+
+      <Divider sx={{ borderColor: "rgba(255,255,255,0.10)" }} />
+
+      {/* Links */}
+      <List sx={{ px: 1.5, py: 2 }}>
+        {navItems.map((item) => {
+          const active = pathname === item.href;
+          return (
+            <ListItemButton
+              key={item.href}
+              component={Link}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              sx={{
+                borderRadius: 2,
+                my: 0.5,
+                px: 2,
+                py: 1.5,
+                backgroundColor: active
+                  ? "rgba(255,255,255,0.10)"
+                  : "transparent",
+                "&:hover": { backgroundColor: "rgba(255,255,255,0.10)" },
+              }}
+            >
+              <ListItemText
+                primary={item.label}
+                primaryTypographyProps={{
+                  fontSize: 20,
+                  fontWeight: 800,
+                }}
+              />
+            </ListItemButton>
+          );
+        })}
+      </List>
+
+      <Box sx={{ flex: 1 }} />
+
+      <Divider sx={{ borderColor: "rgba(255,255,255,0.10)" }} />
+
+      {/* Social icons */}
+      <Box sx={{ p: 2 }}>
+        <SocialLinks
+          className="flex w-full justify-between"
+          iconClassName="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-white/10 text-white transition hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/20"
+        />
+      </Box>
+    </Box>
+  );
+
+  return (
+    <AppBar
+      position="sticky"
+      elevation={0}
+      sx={{
+        zIndex: (t) => t.zIndex.drawer + 1,
+        backgroundColor: NAV_BG,
+        backdropFilter: "blur(10px)",
+        borderBottom: "1px solid rgba(0,0,0,0.10)",
+        color: "#0F172A",
+      }}
+    >
+      <Toolbar
+        sx={{ mx: "auto", width: "100%", maxWidth: 960, px: 2, py: 0.5 }}
+      >
+        {/* Brand always visible */}
+        <Box
+          component={Link}
+          href="/"
+          style={{ textDecoration: "none" }}
+          sx={{
+            px: 1.5,
+            py: 1,
+            borderRadius: 2,
+            fontWeight: 900,
+            color: "white",
+            backgroundColor: "#0F172A",
+            boxShadow: "0 1px 6px rgba(0,0,0,0.12)",
+            "&:hover": { filter: "brightness(1.08)" },
+          }}
+        >
+          Martin Garcia
+        </Box>
+
+        <Box sx={{ flex: 1 }} />
+
+        {/* Desktop vs Mobile */}
+        {isDesktop ? (
+          DesktopLinks
+        ) : (
+          <IconButton
+            aria-label="Open menu"
+            onClick={() => setOpen((v) => !v)}
+            sx={{
+              color: "#0F172A",
+              borderRadius: 2,
+              backgroundColor: "rgba(0,0,0,0.06)",
+              "&:hover": { backgroundColor: "rgba(0,0,0,0.10)" },
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
+        )}
+
+        {/* ✅ Full-screen Drawer */}
+        <Drawer
+          anchor="right"
+          open={open}
+          onClose={() => setOpen(false)}
+          variant="temporary"
+          ModalProps={{ keepMounted: true }}
+          PaperProps={{
+            sx: {
+              width: "100vw",
+              maxWidth: "100vw",
+              height: "100vh",
+              backgroundColor: DRAWER_BG,
+              // make sure it truly covers the viewport
+              position: "fixed",
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0,
+            },
+          }}
+          // Backdrop can be transparent since drawer covers all, but keeping subtle is fine:
+          BackdropProps={{ sx: { backgroundColor: "rgba(0,0,0,0.35)" } }}
+        >
+          {DrawerContent}
+        </Drawer>
+      </Toolbar>
+    </AppBar>
+  );
+}

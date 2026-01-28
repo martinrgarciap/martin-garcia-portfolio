@@ -4,7 +4,7 @@ import { SkillSnapshot, TypingAnimation } from "@/components";
 
 export default function Home() {
   return (
-    <main className="w-full absolute min-h-screen flex flex-col gap-8 md:flex-row md:items-startjustify-center items-center">
+    <main className="w-full h-full absolute flex flex-col gap-8 md:flex-row md:items-startjustify-center items-center justify-center">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full bg-[#A78BFA]/20 blur-3xl" />
         <div className="absolute top-24 -right-24 h-[420px] w-[420px] rounded-full bg-[#6EE7B7]/16 blur-3xl" />
@@ -12,7 +12,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.06),transparent_55%)]" />
       </div>
 
-      <section className=" md:w-3/5 relative mx-auto flex w-full max-w-6xl justify-center px-6 py-16 md:py-24">
+      <section className=" lg:w-1/2 relative mx-auto flex w-full max-w-6xl justify-center px-6 py-16 md:py-24">
         <div className="items-center">
           <div>
             <h1 className="text-balance text-4xl font-extrabold tracking-tight md:text-6xl">
