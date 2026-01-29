@@ -20,10 +20,10 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import { SocialLinks } from "@/components"; // adjust if needed
+import { SocialLinks } from "@/components";
 
-const NAV_BG = "rgba(255,255,255,0.70)"; // matches your nav vibe
-const DRAWER_BG = "#0B1220"; // match your hero background
+const NAV_BG = "rgba(255,255,255,0.70)";
+const DRAWER_BG = "#0B1220";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -35,8 +35,6 @@ export default function NavBar() {
   const pathname = usePathname();
   const theme = useTheme();
 
-  // ✅ Change this breakpoint to control when hamburger appears:
-  // "md" = hamburger below ~900px, "sm" = below ~600px
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   const [open, setOpen] = React.useState(false);
@@ -125,7 +123,6 @@ export default function NavBar() {
 
       <Divider sx={{ borderColor: "rgba(255,255,255,0.10)" }} />
 
-      {/* Links */}
       <List sx={{ px: 1.5, py: 2 }}>
         {navItems.map((item) => {
           const active = pathname === item.href;
@@ -162,7 +159,6 @@ export default function NavBar() {
 
       <Divider sx={{ borderColor: "rgba(255,255,255,0.10)" }} />
 
-      {/* Social icons */}
       <Box sx={{ p: 2 }}>
         <SocialLinks
           className="flex w-full justify-between"
@@ -187,7 +183,6 @@ export default function NavBar() {
       <Toolbar
         sx={{ mx: "auto", width: "100%", maxWidth: 960, px: 2, py: 0.5 }}
       >
-        {/* Brand always visible */}
         <Box
           component={Link}
           href="/"
@@ -208,7 +203,6 @@ export default function NavBar() {
 
         <Box sx={{ flex: 1 }} />
 
-        {/* Desktop vs Mobile */}
         {isDesktop ? (
           DesktopLinks
         ) : (
@@ -226,7 +220,6 @@ export default function NavBar() {
           </IconButton>
         )}
 
-        {/* ✅ Full-screen Drawer */}
         <Drawer
           anchor="right"
           open={open}
@@ -239,7 +232,6 @@ export default function NavBar() {
               maxWidth: "100vw",
               height: "100vh",
               backgroundColor: DRAWER_BG,
-              // make sure it truly covers the viewport
               position: "fixed",
               top: 0,
               right: 0,
