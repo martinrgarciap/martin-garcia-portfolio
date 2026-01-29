@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { NavBar } from "@/components";
 import "./globals.css";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "Martin Garcia's Portfolio",
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen overflow-y-scroll bg-[#0B1020] text-[#F6F3EE] selection:bg-[#FF6B6B]/30 selection:text-[#F6F3EE]">
-        <NavBar />
+        <Providers>
+          <NavBar />
+        </Providers>
         {children}
       </body>
     </html>
