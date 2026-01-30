@@ -159,7 +159,7 @@ export default function AboutPage() {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  Martin
+                  Me
                 </Box>
               </Typography>
 
