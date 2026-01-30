@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Typography, alpha } from "@mui/material";
 import { ReactNode } from "react";
 
 type SectionContainerProps = {
@@ -32,9 +32,7 @@ const Section = ({
         {title}
       </Typography>
       {subtitle && (
-        <Typography sx={{ mt: 1.5, color: "text.secondary", maxWidth: 820 }}>
-          {subtitle}
-        </Typography>
+        <Typography sx={{ color: alpha("#fff", 0.72) }}>{subtitle}</Typography>
       )}
       <Box sx={{ mt: 4 }}>{children}</Box>
     </Container>

@@ -1,6 +1,6 @@
 "use client";
 
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider, alpha } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import * as React from "react";
 
@@ -12,8 +12,8 @@ const theme = createTheme({
       paper: "rgba(255,255,255,0.06)",
     },
     text: {
-      primary: "#E7EEF9",
-      secondary: "rgba(231, 238, 249, 0.72)",
+      primary: alpha("#0B1220", 0.92),
+      secondary: alpha("#0B1220", 0.72),
     },
     primary: { main: "#3B82F6" },
   },

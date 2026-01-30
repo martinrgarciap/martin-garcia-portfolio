@@ -8,12 +8,15 @@ const SectionCard = (props: PaperProps) => (
     {...props}
     sx={{
       borderRadius: 3,
-      border: `1px solid ${alpha("#FFFFFF", 0.1)}`,
-      background: `linear-gradient(180deg, ${alpha("#FFFFFF", 0.06)}, ${alpha(
-        "#FFFFFF",
-        0.03,
+      backgroundColor: "#E9EEF7",
+      backgroundImage: `linear-gradient(180deg, ${alpha("#FFFFFF", 0.9)}, ${alpha(
+        "#DCE6F7",
+        0.9,
       )})`,
-      backdropFilter: "blur(10px)",
+      border: `1px solid ${alpha("#0B1220", 0.12)}`,
+      boxShadow: `0 8px 30px ${alpha("#000", 0.18)}`,
+      backdropFilter: "none",
+      color: "#0B1220",
       ...props.sx,
     }}
   />

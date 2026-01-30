@@ -4,17 +4,22 @@ import { Chip, Stack } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 
 const SkillCards = ({ skills }: { skills: string[] }) => (
-  <Stack direction="row" flexWrap="wrap" gap={1}>
+  <Stack
+    direction="row"
+    flexWrap="wrap"
+    gap={0.9}
+    sx={{ alignContent: "flex-start" }}
+  >
     {skills.map((s) => (
       <Chip
         key={s}
         label={s}
         variant="outlined"
         sx={{
-          borderColor: alpha("#FFFFFF", 0.18),
-          color: "text.secondary",
-          backgroundColor: alpha("#FFFFFF", 0.04),
-          "&:hover": { backgroundColor: alpha("#FFFFFF", 0.07) },
+          borderColor: alpha("#0B1220", 0.12),
+          color: alpha("#0B1220", 0.75),
+          backgroundColor: alpha("#FFFFFF", 0.55),
+          "&:hover": { backgroundColor: alpha("#FFFFFF", 0.7) },
         }}
       />
     ))}
