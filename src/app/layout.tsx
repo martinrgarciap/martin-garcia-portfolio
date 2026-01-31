@@ -1,6 +1,5 @@
-import type { Metadata } from "next";
-
 import { NavBar } from "@/components";
+import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "./providers";
 
@@ -11,16 +10,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className="min-h-screen overflow-y-scroll bg-[#0B1020] text-[#F6F3EE] selection:bg-[#FF6B6B]/30 selection:text-[#F6F3EE]">
+    <html lang="en" className="w-full overflow-x-hidden">
+      <body className="min-h-dvh w-full overflow-x-hidden bg-[#0B1020] text-[#F6F3EE] selection:bg-[#FF6B6B]/30 selection:text-[#F6F3EE]">
         <Providers>
           <NavBar />
+          {children}
         </Providers>
-        {children}
       </body>
     </html>
   );

@@ -32,25 +32,44 @@ const SKILLS = [
   "Agile / Scrum",
   "Confluence",
 
-  // Bonus (only if you’re comfortable)
+  // Bonus
   "Next.js Server Components",
   "Server Actions",
 ];
 
 const SkillSnapshot = () => (
-  <section className="w-full lg:w-1/2 mx-auto max-w-5xl px-6 pb-20">
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+  <section className="w-full lg:w-1/2 mx-auto max-w-5xl px-6">
+    <div
+      className="
+        rounded-2xl
+        border
+        p-6
+        shadow-[0_8px_30px_rgba(0,0,0,0.18)]
+      "
+      style={{
+        backgroundColor: "#E9EEF7",
+        backgroundImage:
+          "linear-gradient(180deg, rgba(255,255,255,0.9), rgba(220,230,247,0.9))",
+        borderColor: "rgba(11,18,32,0.12)",
+        color: "#0B1220",
+      }}
+    >
       <div className="flex items-end justify-center gap-6">
-        <div>
-          <h2 className="text-2xl font-bold text-white">Skills Snapshot</h2>
-        </div>
+        <h2 className="text-2xl font-bold" style={{ color: "#0B1220" }}>
+          Skills Snapshot
+        </h2>
       </div>
 
       <div className="mt-6 flex flex-wrap gap-2">
         {SKILLS.map((skill) => (
           <span
             key={skill}
-            className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-sm text-white/80"
+            className="rounded-full border px-3 py-1 text-sm"
+            style={{
+              borderColor: "rgba(11,18,32,0.12)",
+              backgroundColor: "rgba(11,18,32,0.06)",
+              color: "rgba(11,18,32,0.72)",
+            }}
           >
             {skill}
           </span>

@@ -21,10 +21,19 @@ import {
 
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
+import { alpha } from "@mui/material/styles";
 
 import { SocialLinks } from "@/components";
 
-const NAV_BG = "rgba(255,255,255,0.70)";
+// Match SectionCard look
+const NAV_BG = "#E9EEF7";
+const NAV_BG_GRADIENT = `linear-gradient(180deg, ${alpha(
+  "#FFFFFF",
+  0.9,
+)}, ${alpha("#DCE6F7", 0.9)})`;
+const NAV_BORDER = `1px solid ${alpha("#0B1220", 0.12)}`;
+const NAV_SHADOW = `0 8px 30px ${alpha("#000", 0.18)}`;
+
 const DRAWER_BG = "#0B1220";
 
 const navItems = [
@@ -36,9 +45,7 @@ const navItems = [
 export default function NavBar() {
   const pathname = usePathname();
   const theme = useTheme();
-
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -61,12 +68,13 @@ export default function NavBar() {
                 px: 1.5,
                 py: 1,
                 borderRadius: 2,
-                fontWeight: 700,
+                fontWeight: 800,
                 fontSize: 14,
                 color: active ? "white" : "#0F172A",
-                backgroundColor: active ? "#0F172A" : "rgba(0,0,0,0.04)",
+                backgroundColor: active ? "#0F172A" : alpha("#0B1220", 0.06),
+                border: `1px solid ${alpha("#0B1220", active ? 0 : 0.08)}`,
                 "&:hover": {
-                  backgroundColor: active ? "#0F172A" : "rgba(0,0,0,0.08)",
+                  backgroundColor: active ? "#0F172A" : alpha("#0B1220", 0.1),
                 },
               }}
             >
@@ -86,8 +94,8 @@ export default function NavBar() {
   const DrawerContent = (
     <Box
       sx={{
-        height: "100vh",
-        width: "100vw",
+        height: "100%",
+        width: "100%",
         backgroundColor: DRAWER_BG,
         color: "white",
         display: "flex",
@@ -95,7 +103,6 @@ export default function NavBar() {
       }}
       role="presentation"
     >
-      {/* Header */}
       <Box
         sx={{
           display: "flex",
@@ -147,10 +154,7 @@ export default function NavBar() {
             >
               <ListItemText
                 primary={item.label}
-                primaryTypographyProps={{
-                  fontSize: 20,
-                  fontWeight: 800,
-                }}
+                primaryTypographyProps={{ fontSize: 20, fontWeight: 800 }}
               />
             </ListItemButton>
           );
@@ -177,13 +181,24 @@ export default function NavBar() {
       sx={{
         zIndex: (t) => t.zIndex.drawer + 1,
         backgroundColor: NAV_BG,
-        backdropFilter: "blur(10px)",
-        borderBottom: "1px solid rgba(0,0,0,0.10)",
+        backgroundImage: NAV_BG_GRADIENT,
+        borderBottom: NAV_BORDER,
+        boxShadow: NAV_SHADOW,
+        backdropFilter: "none",
         color: "#0F172A",
+
+        // iOS notch / safe area
+        pt: "env(safe-area-inset-top)",
       }}
     >
       <Toolbar
-        sx={{ mx: "auto", width: "100%", maxWidth: 960, px: 2, py: 0.5 }}
+        sx={{
+          mx: "auto",
+          width: "100%",
+          maxWidth: 1100,
+          px: 2,
+          py: 0.75,
+        }}
       >
         <Box
           component={Link}
@@ -214,8 +229,8 @@ export default function NavBar() {
             sx={{
               color: "#0F172A",
               borderRadius: 2,
-              backgroundColor: "rgba(0,0,0,0.06)",
-              "&:hover": { backgroundColor: "rgba(0,0,0,0.10)" },
+              backgroundColor: alpha("#0B1220", 0.06),
+              "&:hover": { backgroundColor: alpha("#0B1220", 0.1) },
             }}
           >
             <MenuIcon />
@@ -227,21 +242,21 @@ export default function NavBar() {
           open={open}
           onClose={() => setOpen(false)}
           variant="temporary"
-          ModalProps={{ keepMounted: true }}
+          ModalProps={{
+            // ✅ stops MUI from adding body padding-right
+            disableScrollLock: true,
+            // optional: keepMounted usually not needed
+            keepMounted: false,
+          }}
           PaperProps={{
             sx: {
-              width: "100vw",
+              width: "100%",
               maxWidth: "100vw",
-              height: "100vh",
+              height: "100dvh",
               backgroundColor: DRAWER_BG,
-              position: "fixed",
-              top: 0,
-              right: 0,
-              bottom: 0,
-              left: 0,
+              overflowX: "hidden",
             },
           }}
-          // Backdrop can be transparent since drawer covers all, but keeping subtle is fine:
           BackdropProps={{ sx: { backgroundColor: "rgba(0,0,0,0.35)" } }}
         >
           {DrawerContent}

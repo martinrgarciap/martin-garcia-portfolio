@@ -1,47 +1,60 @@
 "use client";
 
-import {
-  AboutSectionCard,
-  ExperienceTimeline,
-  SectionCard,
-  SkillCards,
-} from "@/components";
+import { ExperienceTimeline, SectionCard, SkillCards } from "@/components";
 import type { TimelineEntry } from "@/components/experiencetimeline";
 import * as React from "react";
 
-import { Box, Container, Divider, Stack, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 
-const HIGHLIGHTS = [
-  { label: "Experience", value: "2+ yrs" },
-  { label: "Focus", value: "Frontend + Product UI" },
-  { label: "Strength", value: "Delivery + Ownership" },
-];
-
 const SKILLS = [
+  // Frontend
   "React",
   "Next.js (App Router)",
   "TypeScript",
   "JavaScript (ES6+)",
   "Tailwind CSS",
-  "HTML/CSS",
+  "Material UI",
+  "HTML5",
+  "CSS3",
+  "Responsive Design",
+  "Component Architecture",
+  "State Management",
+
+  // APIs / Data
   "REST APIs",
-  "GraphQL (Apollo)",
-  "PostgreSQL / SQL",
-  "Git",
-  "CI/CD",
-  "Jira / Agile",
+  "GraphQL (Apollo Client)",
+  "PostgreSQL",
+  "SQL",
+  "API Integration",
+
+  // Dev Practices
+  "Git / Version Control",
+  "Code Reviews",
+  "Debugging",
+  "Testing (Post-deployment / QA)",
+  "Performance Optimization",
+
+  // Delivery / Tools
+  "CI/CD (Exposure)",
+  "Jira",
+  "Agile / Scrum",
+  "Confluence",
+
+  // Bonus (only if you’re comfortable)
+  "Next.js Server Components",
+  "Server Actions",
 ];
 
 const TIMELINE: TimelineEntry[] = [
   {
     title: "Scrum Master",
     org: "Auto Loans Services Canada",
-    date: "Jun 2024 — Present",
+    date: "Jun 2024 — Jan 2026",
     bullets: [
-      "Facilitate standups, sprint planning, refinements, and retros to keep delivery predictable.",
-      "Track Agile metrics (burndown, throughput, carryover) and remove blockers early.",
-      "Align stakeholders on scope and priorities using Jira + Confluence.",
+      "Facilitated daily standups, sprint planning, and backlog refinement for cross-functional teams, using Jira to align priorities, clarify scope, and keep sprint commitments on track through consistent execution.",
+      "Maintained Jira boards and dashboards while monitoring key Agile metrics (e.g., burndown, carryover, throughput), improving visibility into progress and enabling earlier detection of delivery risks and slippage.",
+      "Led sprint retrospectives and captured actionable follow-ups in Confluence, driving continuous improvement through documented experiments and agreed process adjustments across sprint cycles.",
     ],
   },
   {
@@ -49,9 +62,20 @@ const TIMELINE: TimelineEntry[] = [
     org: "Influitive",
     date: "Jan 2022 — Jun 2024",
     bullets: [
-      "Built and maintained customer-facing web features for enterprise users.",
-      "Improved UI consistency and accessibility while collaborating with Design + QA.",
-      "Integrated frontend with GraphQL/REST and supported releases via CI/CD workflows.",
+      "Contributed to the development and maintenance of customer-facing web applications used by 400+ enterprise customers, supporting feature delivery and ongoing reliability for organizations including AWS, Adobe, Cisco, and IBM.",
+      "Built and optimized reusable React and Next.js components using TypeScript, improving maintainability through consistent patterns, type safety, and clean component architecture across the codebase.",
+      "Implemented pixel-accurate, responsive UI using Material UI and Tailwind CSS, partnering closely with design and QA to validate UX details, edge cases, and cross-browser behavior before release.",
+      "Integrated frontend features with GraphQL and REST APIs, strengthening data flow and error handling while improving performance through better client-side state management and optimized request patterns.",
+    ],
+  },
+  {
+    title: "Area Supervisor",
+    org: "Canada's Wonderland",
+    date: "Sept 2019 — Jun 2021",
+    bullets: [
+      "Oversaw day-to-day operations across multiple high-volume food & beverage locations, coordinating staffing, station coverage, and service flow to maintain speed, quality, and guest experience during peak demand.",
+      "Led and coached frontline teams (hiring/onboarding, shift leadership, performance feedback), ensuring adherence to safety, cash-handling, and operational standards while improving team consistency and accountability.",
+      "Planned and executed daily labor and scheduling decisions based on forecasted traffic and real-time conditions, reallocating resources quickly to reduce bottlenecks and keep service levels stable.",
     ],
   },
 ];
@@ -168,7 +192,7 @@ export default function AboutPage() {
                   color: "text.secondary",
                   fontSize: 16,
                   lineHeight: 1.7,
-                  maxWidth: "90ch",
+                  width: "100%",
                 }}
               >
                 I’m a software engineer who cares about clean UI, predictable
@@ -177,42 +201,6 @@ export default function AboutPage() {
                 experiences — and I’m happiest when I’m shipping, iterating, and
                 improving.
               </Typography>
-
-              <Divider sx={{ borderColor: alpha("#0B1220", 0.12) }} />
-
-              <Box
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: { xs: "1fr", sm: "repeat(3, 1fr)" },
-                  gap: { xs: 1.25, md: 1.5 },
-                }}
-              >
-                {HIGHLIGHTS.map((h) => (
-                  <Box key={h.label}>
-                    <AboutSectionCard label={h.label} value={h.value} />
-                  </Box>
-                ))}
-              </Box>
-
-              <SectionCard
-                sx={{
-                  p: 2,
-                  width: "100%",
-                  borderColor: alpha("#0B1220", 0.12),
-                  background: `linear-gradient(180deg, ${alpha(
-                    "#3B82F6",
-                    0.12,
-                  )}, ${alpha("#FFFFFF", 0.75)})`,
-                }}
-              >
-                <Typography sx={{ fontWeight: 800, color: "text.primary" }}>
-                  What I’m optimizing for
-                </Typography>
-                <Typography sx={{ color: "text.secondary", mt: 0.7 }}>
-                  A product-focused team where I can own features end-to-end,
-                  collaborate closely, and keep improving the craft.
-                </Typography>
-              </SectionCard>
             </Stack>
           </SectionCard>
         </Container>
@@ -233,7 +221,7 @@ export default function AboutPage() {
               id="skills"
               headline="Toolbox"
               title="What I work with"
-              subtitle="A snapshot of the tools I’m comfortable shipping with. (You can keep your Skills Snapshot on Home too — this page is the deeper version.)"
+              subtitle="A snapshot of the tools I’m comfortable shipping with."
             >
               <SectionCard
                 sx={{

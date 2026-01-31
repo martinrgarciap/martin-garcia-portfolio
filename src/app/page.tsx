@@ -4,7 +4,7 @@ import { SkillSnapshot, TypingAnimation } from "@/components";
 
 export default function Home() {
   return (
-    <main className="w-full h-full absolute flex flex-col gap-8 md:flex-row md:items-startjustify-center items-center justify-center">
+    <main className="w-full h-full my-5 flex flex-col gap-8 md:flex-row md:items-startjustify-center items-center justify-center">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full bg-[#A78BFA]/20 blur-3xl" />
         <div className="absolute top-24 -right-24 h-[420px] w-[420px] rounded-full bg-[#6EE7B7]/16 blur-3xl" />
