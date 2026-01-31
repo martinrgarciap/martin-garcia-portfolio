@@ -1,6 +1,11 @@
 "use client";
 
-import { SectionCard, SkillCards, TypingAnimation } from "@/components";
+import {
+  SectionBlock,
+  SectionCard,
+  SkillCards,
+  TypingAnimation,
+} from "@/components";
 
 import { Box } from "@mui/material";
 
@@ -14,7 +19,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.06),transparent_55%)]" />
       </div>
 
-      <section className="lg:w-1/2 relative mx-auto flex w-full max-w-6xl justify-center px-6 py-16 min-[900px]:py-24">
+      <section className="relative mx-auto flex w-full max-w-6xl justify-center px-6 py-16 min-[900px]:py-24">
         <div className="items-center">
           <div>
             <h1 className="text-balance text-4xl font-extrabold tracking-tight min-[900px]:text-6xl">
@@ -51,28 +56,34 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <SectionCard
-        sx={{
-          p: { xs: 2, md: 3 },
-          width: "100%",
-          flex: { xs: "unset", md: 1 },
-          minHeight: { xs: "auto", md: 0 },
-          display: "flex",
-          flexDirection: "column",
-        }}
+      <SectionBlock
+        id="skills"
+        headline="Toolbox"
+        title="What I work with"
+        subtitle="A snapshot of the tools I’m comfortable shipping with."
       >
-        <Box
+        <SectionCard
           sx={{
+            p: { xs: 2, md: 3 },
+            width: "100%",
             flex: { xs: "unset", md: 1 },
-            minHeight: 0,
-            overflow: { xs: "visible", md: "auto" },
-            pr: { md: 0.5 },
+            minHeight: { xs: "auto", md: 0 },
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          <SkillCards />
-        </Box>
-      </SectionCard>
+          <Box
+            sx={{
+              flex: { xs: "unset", md: 1 },
+              minHeight: 0,
+              overflow: { xs: "visible", md: "auto" },
+              pr: { md: 0.5 },
+            }}
+          >
+            <SkillCards />
+          </Box>
+        </SectionCard>
+      </SectionBlock>
     </main>
   );
 }

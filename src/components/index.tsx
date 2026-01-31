@@ -2,6 +2,7 @@ export { default as AboutSectionCard } from "./aboutsectioncard";
 export { default as ExperienceTimeline } from "./experiencetimeline";
 export { default as IconBtn } from "./iconbtn";
 export { default as NavBar } from "./navbar";
+export { default as SectionBlock } from "./sectionblock";
 export { default as SectionCard } from "./sectioncard";
 export { default as SectionContainer } from "./sectioncontainer";
 export { default as SkillCards } from "./skillcards";
