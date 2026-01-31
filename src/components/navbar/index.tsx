@@ -187,7 +187,6 @@ export default function NavBar() {
         backdropFilter: "none",
         color: "#0F172A",
 
-        // iOS notch / safe area
         pt: "env(safe-area-inset-top)",
       }}
     >
@@ -243,9 +242,7 @@ export default function NavBar() {
           onClose={() => setOpen(false)}
           variant="temporary"
           ModalProps={{
-            // ✅ stops MUI from adding body padding-right
             disableScrollLock: true,
-            // optional: keepMounted usually not needed
             keepMounted: false,
           }}
           PaperProps={{

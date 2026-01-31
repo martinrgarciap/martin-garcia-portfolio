@@ -7,45 +7,6 @@ import * as React from "react";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 
-const SKILLS = [
-  // Frontend
-  "React",
-  "Next.js (App Router)",
-  "TypeScript",
-  "JavaScript (ES6+)",
-  "Tailwind CSS",
-  "Material UI",
-  "HTML5",
-  "CSS3",
-  "Responsive Design",
-  "Component Architecture",
-  "State Management",
-
-  // APIs / Data
-  "REST APIs",
-  "GraphQL (Apollo Client)",
-  "PostgreSQL",
-  "SQL",
-  "API Integration",
-
-  // Dev Practices
-  "Git / Version Control",
-  "Code Reviews",
-  "Debugging",
-  "Testing (Post-deployment / QA)",
-  "Performance Optimization",
-
-  // Delivery / Tools
-  "CI/CD (Exposure)",
-  "Jira",
-  "Agile / Scrum",
-  "Confluence",
-
-  // Bonus (only if you’re comfortable)
-  "Next.js Server Components",
-  "Server Actions",
-];
-
 const TIMELINE: TimelineEntry[] = [
   {
     title: "Scrum Master",
@@ -234,7 +195,7 @@ export default function AboutPage() {
                 }}
               >
                 <Box sx={{ flex: 1, minHeight: 0, overflow: "auto", pr: 0.5 }}>
-                  <SkillCards skills={SKILLS} />
+                  <SkillCards />
                 </Box>
               </SectionCard>
             </SectionBlock>

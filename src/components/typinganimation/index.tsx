@@ -7,7 +7,7 @@ const TypingAnimation = ({ sequenceText }: { sequenceText: string[] }) => (
   <TypeAnimation
     sequence={sequenceText.flatMap((text) => [text, typingAnimationDuration])}
     wrapper="span"
-    speed={50}
+    speed={70}
     style={{ display: "inline-block" }}
     repeat={Infinity}
   />
