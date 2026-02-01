@@ -4,7 +4,7 @@ import { Box, Typography, alpha } from "@mui/material";
 
 function SectionBlock(props: {
   id?: string;
-  headline: string;
+  headline?: string;
   title: string;
   subtitle?: string;
   children: React.ReactNode;
@@ -23,12 +23,14 @@ function SectionBlock(props: {
         minHeight: 0,
       }}
     >
-      <Typography
-        variant="overline"
-        sx={{ letterSpacing: 1.2, color: alpha("#fff", 0.6) }}
-      >
-        {headline}
-      </Typography>
+      {headline && (
+        <Typography
+          variant="overline"
+          sx={{ letterSpacing: 1.2, color: alpha("#fff", 0.6) }}
+        >
+          {headline}
+        </Typography>
+      )}
 
       <Typography
         variant="h4"

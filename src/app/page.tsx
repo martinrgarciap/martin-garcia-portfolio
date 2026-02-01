@@ -56,12 +56,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <SectionBlock
-        id="skills"
-        headline="Toolbox"
-        title="What I work with"
-        subtitle="A snapshot of the tools I’m comfortable shipping with."
-      >
+      <SectionBlock id="skills" title="What I Know">
         <SectionCard
           sx={{
             p: { xs: 2, md: 3 },

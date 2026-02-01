@@ -116,7 +116,6 @@ export default function AboutPage() {
           <Box sx={{ minHeight: 0 }}>
             <SectionBlock
               id="skills"
-              headline="Toolbox"
               title="What I work with"
               subtitle="A snapshot of the tools I’m comfortable shipping with."
             >
@@ -140,7 +139,6 @@ export default function AboutPage() {
           <Box sx={{ minHeight: 0 }}>
             <SectionBlock
               id="experience"
-              headline="Timeline"
               title="Experience"
               subtitle="A quick narrative of where I’ve delivered value recently."
             >
@@ -200,8 +198,7 @@ export default function AboutPage() {
       <Box sx={{ py: 6 }}>
         <Container maxWidth="lg">
           <Typography variant="caption" sx={{ color: alpha("#fff", 0.7) }}>
-            © {new Date().getFullYear()} Martin Garcia — built with Next.js +
-            MUI
+            © {new Date().getFullYear()} Martin Garcia
           </Typography>
         </Container>
       </Box>
