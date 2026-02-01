@@ -25,7 +25,6 @@ import { alpha } from "@mui/material/styles";
 
 import { SocialLinks } from "@/components";
 
-// Match SectionCard look
 const NAV_BG = "#E9EEF7";
 const NAV_BG_GRADIENT = `linear-gradient(180deg, ${alpha(
   "#FFFFFF",

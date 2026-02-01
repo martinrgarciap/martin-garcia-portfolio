@@ -2,12 +2,11 @@
 
 import {
   ExperienceTimeline,
+  SectionBlock,
   SectionCard,
   SkillCards,
-  SectionBlock,
 } from "@/components";
 import type { TimelineEntry } from "@/components/experiencetimeline";
-import * as React from "react";
 
 import { Box, Container, Stack, Typography } from "@mui/material";
 import { alpha } from "@mui/material/styles";

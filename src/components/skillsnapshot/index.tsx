@@ -31,8 +31,6 @@ const SKILLS = [
   "Jira",
   "Agile / Scrum",
   "Confluence",
-
-  // Bonus
   "Next.js Server Components",
   "Server Actions",
 ];
