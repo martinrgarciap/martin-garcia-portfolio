@@ -70,6 +70,32 @@ const groups: ProjectGroup[] = [
     subheading: "Products and full-stack apps I’ve built.",
     projects: [
       {
+        title: "PaymentFlow",
+        subtitle: "Full-stack payments dashboard",
+        description:
+          "A full-stack payments dashboard for creating, tracking, filtering, and reviewing transactions. Built with a Spring Boot backend and a React + TypeScript frontend, with support for pagination, search, status updates, risk flagging, and seeded transaction data for realistic testing.",
+        tags: [
+          { label: "Java", color: "green" },
+          { label: "Spring Boot", color: "blue" },
+          { label: "PostgreSQL", color: "amber" },
+          { label: "React", color: "blue" },
+          { label: "TypeScript", color: "purple" },
+          { label: "Tailwind CSS", color: "amber" },
+        ],
+        imageSrc: "/paymentflow.png",
+        imageAlt: "PaymentFlow dashboard screenshot",
+        links: [
+          {
+            label: "Live Demo",
+            href: "https://your-paymentflow-frontend-url.vercel.app",
+          },
+          {
+            label: "GitHub",
+            href: "https://github.com/martinrgarciap/paymentflow",
+          },
+        ],
+      },
+      {
         title: "Portfolio Website",
         subtitle: "This site",
         description:
