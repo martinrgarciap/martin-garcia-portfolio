@@ -4,7 +4,7 @@ import {
   ExperienceTimeline,
   SectionBlock,
   SectionCard,
-  SkillCards,
+  SkillsSection,
 } from "@/components";
 import type { TimelineEntry } from "@/components/experiencetimeline";
 
@@ -130,7 +130,7 @@ export default function AboutPage() {
                 }}
               >
                 <Box sx={{ flex: 1, minHeight: 0, overflow: "auto", pr: 0.5 }}>
-                  <SkillCards />
+                  <SkillsSection showHeading={false} compact />
                 </Box>
               </SectionCard>
             </SectionBlock>

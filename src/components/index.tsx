@@ -5,7 +5,7 @@ export { default as NavBar } from "./navbar";
 export { default as SectionBlock } from "./sectionblock";
 export { default as SectionCard } from "./sectioncard";
 export { default as SectionContainer } from "./sectioncontainer";
-export { default as SkillCards } from "./skillcards";
+export { default as SkillsSection } from "./skillcards";
 export { default as SkillSnapshot } from "./skillsnapshot";
 export { default as SocialLinks } from "./sociallinks";
 export { default as TypingAnimation } from "./typinganimation";

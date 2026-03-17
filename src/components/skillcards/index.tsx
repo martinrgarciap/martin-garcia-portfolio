@@ -3,8 +3,6 @@
 import { Box, Chip, Stack, Typography } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 
-import { SectionCard } from "@/components";
-
 type SkillColorKey = "blue" | "green" | "purple" | "amber" | "red";
 
 type SkillItem = {
@@ -18,38 +16,38 @@ type SkillGroup = {
   skills: SkillItem[];
 };
 
-const CARD_BG = "#E9EEF7";
-const CARD_GRADIENT = `linear-gradient(180deg, ${alpha("#FFFFFF", 0.92)}, ${alpha(
-  "#DCE6F7",
-  0.92,
-)})`;
-const CARD_BORDER = `1px solid ${alpha("#0B1220", 0.12)}`;
-const CARD_SHADOW = `0 18px 60px ${alpha("#000", 0.25)}`;
+type SkillsSectionProps = {
+  showHeading?: boolean;
+  heading?: string;
+  subheading?: string;
+  headingTone?: "light" | "dark";
+  compact?: boolean;
+};
 
 const skillColor = {
   blue: {
     bg: alpha("#3B82F6", 0.12),
-    border: alpha("#3B82F6", 0.24),
+    border: alpha("#3B82F6", 0.22),
     dot: "#3B82F6",
   },
   green: {
     bg: alpha("#10B981", 0.12),
-    border: alpha("#10B981", 0.24),
+    border: alpha("#10B981", 0.22),
     dot: "#10B981",
   },
   purple: {
     bg: alpha("#8B5CF6", 0.12),
-    border: alpha("#8B5CF6", 0.24),
+    border: alpha("#8B5CF6", 0.22),
     dot: "#8B5CF6",
   },
   amber: {
     bg: alpha("#F59E0B", 0.12),
-    border: alpha("#F59E0B", 0.24),
+    border: alpha("#F59E0B", 0.22),
     dot: "#F59E0B",
   },
   red: {
     bg: alpha("#EF4444", 0.12),
-    border: alpha("#EF4444", 0.24),
+    border: alpha("#EF4444", 0.22),
     dot: "#EF4444",
   },
 };
@@ -119,7 +117,7 @@ const skillGroups: SkillGroup[] = [
   {
     title: "Other",
     description:
-      "Additional technologies and concepts I’ve used across projects, experiments, and product-style builds.",
+      "Additional tools and concepts I’ve used across projects and product-style builds.",
     skills: [
       { label: "Node.js", color: "green" },
       { label: "Express.js", color: "blue" },
@@ -154,7 +152,7 @@ function SkillChip({
         "& .MuiChip-label": { px: 1.1 },
         "&:hover": { backgroundColor: alpha(c.dot, 0.16) },
         position: "relative",
-        pl: 1.2,
+        pl: 1.5,
         "&:before": {
           content: '""',
           position: "absolute",
@@ -169,23 +167,35 @@ function SkillChip({
   );
 }
 
-function SkillGroupCard({ group }: { group: SkillGroup }) {
+function SkillGroupCard({
+  group,
+  compact = false,
+}: {
+  group: SkillGroup;
+  compact?: boolean;
+}) {
   return (
-    <SectionCard
+    <Box
       sx={{
-        p: { xs: 2, sm: 2.5, md: 3 },
-        backgroundColor: CARD_BG,
-        backgroundImage: CARD_GRADIENT,
-        border: CARD_BORDER,
-        boxShadow: CARD_SHADOW,
+        borderRadius: 5,
+        background: `linear-gradient(180deg, ${alpha("#FFFFFF", 0.74)}, ${alpha(
+          "#DCE6F7",
+          0.86,
+        )})`,
+        border: `1px solid ${alpha("#0B1220", 0.08)}`,
+        boxShadow: `0 10px 28px ${alpha("#000", 0.08)}`,
+        p: 5,
+        minHeight: compact ? "unset" : 220,
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <Typography
         sx={{
-          fontSize: 24,
+          fontSize: compact ? 18 : 20,
           fontWeight: 900,
           color: "#0F172A",
-          lineHeight: 1.1,
+          lineHeight: 1.15,
         }}
       >
         {group.title}
@@ -193,15 +203,22 @@ function SkillGroupCard({ group }: { group: SkillGroup }) {
 
       <Typography
         sx={{
-          mt: 1.25,
-          color: alpha("#0B1220", 0.72),
-          lineHeight: 1.7,
+          mt: 1,
+          color: alpha("#0B1220", 0.68),
+          lineHeight: 1.65,
+          fontSize: compact ? 14 : 15,
         }}
       >
         {group.description}
       </Typography>
 
-      <Stack direction="row" flexWrap="wrap" gap={1} sx={{ mt: 2.25 }}>
+      <Stack
+        direction="row"
+        flexWrap="wrap"
+        useFlexGap
+        gap={1.15}
+        sx={{ mt: 2.25 }}
+      >
         {[...group.skills]
           .sort((a, b) => a.label.localeCompare(b.label))
           .map((skill) => (
@@ -212,52 +229,65 @@ function SkillGroupCard({ group }: { group: SkillGroup }) {
             />
           ))}
       </Stack>
-    </SectionCard>
+    </Box>
   );
 }
 
-export default function SkillsSection() {
-  return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-      <Box>
-        <Typography
-          sx={{
-            fontSize: { xs: 34, md: 52 },
-            fontWeight: 950,
-            lineHeight: 1.05,
-            letterSpacing: -0.5,
-            color: "#F6F3EE",
-          }}
-        >
-          Skills
-        </Typography>
+export default function SkillsSection({
+  showHeading = true,
+  heading = "Skills",
+  subheading = "The tools and technologies I use to build polished full-stack products.",
+  headingTone = "light",
+  compact = false,
+}: SkillsSectionProps) {
+  const headingColor = headingTone === "light" ? "#F6F3EE" : "#0F172A";
+  const subheadingColor =
+    headingTone === "light" ? alpha("#F6F3EE", 0.72) : alpha("#0B1220", 0.68);
 
-        <Typography
-          sx={{
-            mt: 1.5,
-            maxWidth: 760,
-            color: alpha("#F6F3EE", 0.72),
-            fontSize: { xs: 16, md: 18 },
-            lineHeight: 1.7,
-          }}
-        >
-          A mix of frontend, backend, testing, and deployment tools I’ve used to
-          build polished interfaces and full-stack applications.
-        </Typography>
-      </Box>
+  return (
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 2.25 }}>
+      {showHeading ? (
+        <Box sx={{ mb: 0.5 }}>
+          <Typography
+            sx={{
+              fontSize: compact ? 28 : { xs: 34, md: 42 },
+              fontWeight: 950,
+              lineHeight: 1.05,
+              letterSpacing: -0.4,
+              color: headingColor,
+            }}
+          >
+            {heading}
+          </Typography>
+
+          <Typography
+            sx={{
+              mt: 1,
+              maxWidth: 760,
+              color: subheadingColor,
+              fontSize: compact ? 15 : { xs: 16, md: 17 },
+              lineHeight: 1.7,
+            }}
+          >
+            {subheading}
+          </Typography>
+        </Box>
+      ) : null}
 
       <Box
         sx={{
           display: "grid",
           gridTemplateColumns: {
             xs: "1fr",
-            lg: "1fr 1fr",
+            sm: "1fr",
+            md: "1fr 1fr",
           },
-          gap: 3,
+          gap: 2,
+          alignItems: "stretch",
         }}
       >
         {skillGroups.map((group) => (
-          <SkillGroupCard key={group.title} group={group} />
+          <SkillGroupCard key={group.title} group={group} compact={compact} />
         ))}
       </Box>
     </Box>

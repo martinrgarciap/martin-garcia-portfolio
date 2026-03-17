@@ -3,7 +3,7 @@
 import {
   SectionBlock,
   SectionCard,
-  SkillCards,
+  SkillsSection,
   TypingAnimation,
 } from "@/components";
 
@@ -75,7 +75,10 @@ export default function Home() {
               pr: { md: 0.5 },
             }}
           >
-            <SkillCards />
+            <SkillsSection
+              subheading="The tools and technologies I use to build polished full-stack products."
+              headingTone="dark"
+            />
           </Box>
         </SectionCard>
       </SectionBlock>
