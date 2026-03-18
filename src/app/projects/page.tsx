@@ -87,7 +87,7 @@ const groups: ProjectGroup[] = [
         links: [
           {
             label: "Live Demo",
-            href: "https://paymentflow-q4k7ze5bj-martinrgarciaps-projects.vercel.app/",
+            href: "https://paymentflow-khaki.vercel.app",
           },
           {
             label: "GitHub",
