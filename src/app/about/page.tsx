@@ -130,7 +130,11 @@ export default function AboutPage() {
                 }}
               >
                 <Box sx={{ flex: 1, minHeight: 0, overflow: "auto", pr: 0.5 }}>
-                  <SkillsSection showHeading={false} compact />
+                  <SkillsSection
+                    showHeading={false}
+                    headingTone="dark"
+                    compact
+                  />
                 </Box>
               </SectionCard>
             </SectionBlock>
