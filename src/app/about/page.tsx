@@ -1,10 +1,10 @@
-import { ExperienceTimeline, SectionBlock, SkillsSection } from "@/components";
+import { ExperienceTimeline, SectionBlock } from "@/components";
 
 const TIMELINE = [
   {
     title: "Scrum Master",
     org: "Auto Loans Services Canada",
-    date: "Jun 2024 — Jan 2026",
+    date: "Jun 2024 - Jan 2026",
     bullets: [
       "Facilitated sprint ceremonies, backlog refinement, and team alignment across cross-functional work.",
       "Tracked delivery health through Jira boards, dashboards, and Agile metrics.",
@@ -14,7 +14,7 @@ const TIMELINE = [
   {
     title: "Software Engineer",
     org: "Influitive",
-    date: "Jan 2022 — Jun 2024",
+    date: "Jan 2022 - Jun 2024",
     bullets: [
       "Built and maintained customer-facing web applications used by large enterprise clients.",
       "Developed reusable React and Next.js components with TypeScript and clean frontend patterns.",
@@ -24,7 +24,7 @@ const TIMELINE = [
   {
     title: "Area Supervisor",
     org: "Canada's Wonderland",
-    date: "Sept 2019 — Jun 2021",
+    date: "Sept 2019 - Jun 2021",
     bullets: [
       "Oversaw operations across multiple high-volume food and beverage locations.",
       "Led frontline teams, handled staffing decisions, and maintained service standards during peak demand.",
@@ -51,6 +51,27 @@ const workingStyle = [
   },
 ];
 
+const stackGroups = [
+  {
+    title: "Frontend",
+    dotClass: "bg-sky-400",
+    chipClass: "border-sky-400/20 bg-sky-400/10 text-sky-100",
+    chips: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Material UI"],
+  },
+  {
+    title: "Backend",
+    dotClass: "bg-violet-400",
+    chipClass: "border-violet-400/20 bg-violet-400/10 text-violet-100",
+    chips: ["Java", "Spring Boot", "REST APIs", "Hibernate", "PostgreSQL"],
+  },
+  {
+    title: "Tools",
+    dotClass: "bg-emerald-400",
+    chipClass: "border-emerald-400/20 bg-emerald-400/10 text-emerald-100",
+    chips: ["Git", "GitHub", "JUnit 5", "Vercel", "Railway", "Jira"],
+  },
+];
+
 export default function AboutPage() {
   return (
     <main className="relative overflow-hidden pb-20 sm:pb-24">
@@ -59,79 +80,85 @@ export default function AboutPage() {
       <div className="floating-orb bottom-[-120px] left-1/3 h-[280px] w-[280px] bg-fuchsia-500/15 sm:h-[380px] sm:w-[380px]" />
 
       <section className="site-container pt-8 sm:pt-12 lg:pt-16">
-        <div className="surface-strong p-6 sm:p-8 lg:p-10">
-          <span className="eyebrow">About me</span>
+        <div className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
+          <div>
+            <span className="eyebrow">About me</span>
 
-          <div className="mt-5 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-            <div>
-              <h1 className="text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-white sm:text-5xl lg:text-6xl">
-                Building clean products
-                <br />
-                with strong UI instincts
-                <br />
-                and <span className="text-gradient">practical delivery.</span>
-              </h1>
+            <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-white sm:text-5xl lg:text-6xl">
+              I build clean,
+              <br />
+              polished products
+              <br />
+              with strong{" "}
+              <span className="text-gradient">frontend instincts.</span>
+            </h1>
 
-              <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-                I’m Martin Garcia, a software developer who enjoys turning
-                unclear requirements into polished, usable experiences. I care
-                about interface quality, calm execution, and building things
-                that feel intentional from both the product and engineering
-                side.
-              </p>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+              I’m Martin Garcia, a software developer who enjoys turning unclear
+              requirements into usable, modern product experiences. I care about
+              layout, flow, polish, and building things that feel intentional
+              from both the engineering and product side.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              <span className="pill">Frontend-first</span>
+              <span className="pill">Product-minded</span>
+              <span className="pill">Full-stack capable</span>
+            </div>
+          </div>
+
+          <div className="surface p-5 sm:p-6 lg:p-7">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  Core stack
+                </p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">
+                  What I build with
+                </h2>
+              </div>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-              <div className="rounded-[24px] border border-white/10 bg-white/[0.05] p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                  Focus
-                </p>
-                <p className="mt-3 text-lg font-semibold text-white">
-                  Frontend-first mindset
-                </p>
-                <p className="mt-2 text-sm leading-7 text-slate-300">
-                  Strong attention to layout, spacing, polish, and the way a
-                  product feels in use.
-                </p>
-              </div>
+            <div className="mt-6 space-y-5">
+              {stackGroups.map((group) => (
+                <div
+                  key={group.title}
+                  className="rounded-[22px] border border-white/10 bg-white/[0.04] p-4 sm:p-5"
+                >
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={`h-2.5 w-2.5 rounded-full ${group.dotClass}`}
+                    />
+                    <h3 className="text-lg font-semibold tracking-[-0.03em] text-white">
+                      {group.title}
+                    </h3>
+                  </div>
 
-              <div className="rounded-[24px] border border-white/10 bg-white/[0.05] p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                  Strength
-                </p>
-                <p className="mt-3 text-lg font-semibold text-white">
-                  Product + execution
-                </p>
-                <p className="mt-2 text-sm leading-7 text-slate-300">
-                  I like bridging clean implementation with practical team
-                  delivery and clear priorities.
-                </p>
-              </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {group.chips.map((chip) => (
+                      <span
+                        key={chip}
+                        className={`inline-flex items-center rounded-full border px-3 py-1.5 text-sm font-medium ${group.chipClass}`}
+                      >
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       <section className="site-container mt-16 sm:mt-20">
-        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-          <SectionBlock
-            id="skills"
-            title="What I work with"
-            subtitle="A focused snapshot of the tools I’m most comfortable building and shipping with."
-          >
-            <div className="mt-0">
-              <SkillsSection showHeading={false} compact />
-            </div>
-          </SectionBlock>
-
-          <SectionBlock
-            id="experience"
-            title="Experience"
-            subtitle="A quick view of the environments where I’ve delivered the most value."
-          >
-            <ExperienceTimeline items={TIMELINE} />
-          </SectionBlock>
-        </div>
+        <SectionBlock
+          id="experience"
+          title="Experience"
+          subtitle="A quick view of the environments where I’ve delivered the most value."
+        >
+          <ExperienceTimeline items={TIMELINE} />
+        </SectionBlock>
       </section>
 
       <section className="site-container mt-16 sm:mt-20">

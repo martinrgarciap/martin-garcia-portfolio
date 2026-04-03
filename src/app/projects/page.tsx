@@ -1,18 +1,16 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 
-import { Box, Chip, Divider, Stack, Typography } from "@mui/material";
-import { alpha } from "@mui/material/styles";
-
-import { SectionCard } from "@/components";
-
-type TagColorKey = "blue" | "green" | "purple" | "amber";
+type TagTone = "sky" | "violet" | "emerald" | "amber";
 
 type ProjectTag = {
   label: string;
-  color: TagColorKey;
+  tone: TagTone;
+};
+
+type ProjectLink = {
+  label: string;
+  href: string;
 };
 
 type Project = {
@@ -20,52 +18,22 @@ type Project = {
   subtitle?: string;
   description: string;
   tags: ProjectTag[];
-  imageSrc?: string;
+  imageSrc: string;
   imageAlt: string;
-  links?: { label: string; href: string }[];
+  links: ProjectLink[];
+  featured?: boolean;
 };
 
 type ProjectGroup = {
   heading: string;
-  subheading?: string;
+  subheading: string;
+  id: string;
   projects: Project[];
-};
-
-const PAGE_MAX = 1200;
-
-const CARD_BG = "#E9EEF7";
-const CARD_GRADIENT = `linear-gradient(180deg, ${alpha("#FFFFFF", 0.92)}, ${alpha(
-  "#DCE6F7",
-  0.92,
-)})`;
-const CARD_BORDER = `1px solid ${alpha("#0B1220", 0.12)}`;
-const CARD_SHADOW = `0 18px 60px ${alpha("#000", 0.25)}`;
-
-const tagColor = {
-  blue: {
-    bg: alpha("#3B82F6", 0.12),
-    border: alpha("#3B82F6", 0.25),
-    dot: "#3B82F6",
-  },
-  green: {
-    bg: alpha("#10B981", 0.12),
-    border: alpha("#10B981", 0.25),
-    dot: "#10B981",
-  },
-  purple: {
-    bg: alpha("#8B5CF6", 0.12),
-    border: alpha("#8B5CF6", 0.25),
-    dot: "#8B5CF6",
-  },
-  amber: {
-    bg: alpha("#F59E0B", 0.12),
-    border: alpha("#F59E0B", 0.25),
-    dot: "#F59E0B",
-  },
 };
 
 const groups: ProjectGroup[] = [
   {
+    id: "web-apps",
     heading: "Web Apps",
     subheading: "Products and full-stack apps I’ve built.",
     projects: [
@@ -73,14 +41,14 @@ const groups: ProjectGroup[] = [
         title: "PaymentFlow",
         subtitle: "Full-stack payments dashboard",
         description:
-          "A full-stack payments dashboard for creating, tracking, filtering, and reviewing transactions. Built with a Spring Boot backend and a React + TypeScript frontend, with support for pagination, search, status updates, risk flagging, and seeded transaction data for realistic testing.",
+          "A full-stack payments dashboard for creating, tracking, filtering, and reviewing transactions. Built with a Spring Boot backend and a React + TypeScript frontend, with pagination, search, status updates, risk flagging, and seeded transaction data for realistic testing.",
         tags: [
-          { label: "Java", color: "green" },
-          { label: "Spring Boot", color: "blue" },
-          { label: "PostgreSQL", color: "amber" },
-          { label: "React", color: "blue" },
-          { label: "TypeScript", color: "purple" },
-          { label: "Tailwind CSS", color: "amber" },
+          { label: "Java", tone: "emerald" },
+          { label: "Spring Boot", tone: "sky" },
+          { label: "PostgreSQL", tone: "amber" },
+          { label: "React", tone: "sky" },
+          { label: "TypeScript", tone: "violet" },
+          { label: "Tailwind CSS", tone: "amber" },
         ],
         imageSrc: "/paymentflow.png",
         imageAlt: "PaymentFlow dashboard screenshot",
@@ -94,6 +62,7 @@ const groups: ProjectGroup[] = [
             href: "https://github.com/martinrgarciap/paymentflow",
           },
         ],
+        featured: true,
       },
       {
         title: "Portfolio Website",
@@ -101,13 +70,13 @@ const groups: ProjectGroup[] = [
         description:
           "A focused, product-like portfolio with strong UI polish, responsive layout, and clear storytelling across skills, experience, and projects.",
         tags: [
-          { label: "Next.js", color: "blue" },
-          { label: "TypeScript", color: "purple" },
-          { label: "Material UI", color: "green" },
-          { label: "Tailwind CSS", color: "amber" },
+          { label: "Next.js", tone: "sky" },
+          { label: "TypeScript", tone: "violet" },
+          { label: "Material UI", tone: "emerald" },
+          { label: "Tailwind CSS", tone: "amber" },
         ],
         imageSrc: "/portfolio.png",
-        imageAlt: "Portfolio project screenshot",
+        imageAlt: "Portfolio website screenshot",
         links: [
           {
             label: "GitHub",
@@ -117,19 +86,19 @@ const groups: ProjectGroup[] = [
       },
       {
         title: "YelpCamp Campgrounds Finder",
-        subtitle: "Plan trips • save spots • search & organize",
+        subtitle: "Plan trips, save spots, search and organize",
         description:
-          "A camping trip planner that helps you search campgrounds, save favorites, and organize trip details in one place. Built to feel fast, clean, and practical.",
+          "A camping trip planner that helps users search campgrounds, save favorites, and organize trip details in one place. Built to feel fast, clean, and practical.",
         tags: [
-          { label: "Node.js", color: "green" },
-          { label: "Express.js", color: "blue" },
-          { label: "MongoDB", color: "amber" },
+          { label: "Node.js", tone: "emerald" },
+          { label: "Express.js", tone: "sky" },
+          { label: "MongoDB", tone: "amber" },
         ],
         imageSrc: "/campgrounds.png",
-        imageAlt: "Campgrounds project screenshot",
+        imageAlt: "YelpCamp project screenshot",
         links: [
           {
-            label: "Site",
+            label: "Live Site",
             href: "https://yelpcamp-martin-a114876011e6.herokuapp.com/",
           },
           {
@@ -141,6 +110,7 @@ const groups: ProjectGroup[] = [
     ],
   },
   {
+    id: "games",
     heading: "Games",
     subheading: "Fun builds that still show engineering fundamentals.",
     projects: [
@@ -150,13 +120,13 @@ const groups: ProjectGroup[] = [
         description:
           "An online Pokémon battle experience with turn logic, moves, and battle state management. Built to be snappy and replayable.",
         tags: [
-          { label: "HTML", color: "amber" },
-          { label: "CSS", color: "blue" },
-          { label: "Game Logic", color: "purple" },
-          { label: "State Management", color: "green" },
+          { label: "HTML", tone: "amber" },
+          { label: "CSS", tone: "sky" },
+          { label: "Game Logic", tone: "violet" },
+          { label: "State Management", tone: "emerald" },
         ],
         imageSrc: "/pokemon.png",
-        imageAlt: "Pokemon battle project screenshot",
+        imageAlt: "Pokemon battle screenshot",
         links: [
           {
             label: "Live Demo",
@@ -171,19 +141,19 @@ const groups: ProjectGroup[] = [
     ],
   },
   {
+    id: "python",
     heading: "Python",
-    subheading:
-      "A collection of Python work (utilities, mini-projects, experiments).",
+    subheading: "Utilities, mini-projects, and experiments.",
     projects: [
       {
         title: "Python Projects",
         subtitle: "Repo collection",
         description:
-          "A couple of Python builds I’ve explored over time, including OpenCV computer-vision experiments, a webcam motion detector and web scraping tools.",
+          "A collection of Python builds, including OpenCV computer-vision experiments, a webcam motion detector, and web scraping tools.",
         tags: [
-          { label: "Python", color: "blue" },
-          { label: "Web Scraping", color: "green" },
-          { label: "Data Tools", color: "purple" },
+          { label: "Python", tone: "sky" },
+          { label: "Web Scraping", tone: "emerald" },
+          { label: "Data Tools", tone: "violet" },
         ],
         imageSrc: "/python.png",
         imageAlt: "Python projects repository screenshot",
@@ -198,258 +168,273 @@ const groups: ProjectGroup[] = [
   },
 ];
 
-function TagChip({
-  label,
-  colorKey,
-}: {
-  label: string;
-  colorKey: TagColorKey;
-}) {
-  const c = tagColor[colorKey];
+function toneClasses(tone: TagTone) {
+  switch (tone) {
+    case "sky":
+      return "border-sky-400/20 bg-sky-400/10 text-sky-100";
+    case "violet":
+      return "border-violet-400/20 bg-violet-400/10 text-violet-100";
+    case "emerald":
+      return "border-emerald-400/20 bg-emerald-400/10 text-emerald-100";
+    case "amber":
+      return "border-amber-400/20 bg-amber-400/10 text-amber-100";
+    default:
+      return "border-white/10 bg-white/[0.06] text-slate-200";
+  }
+}
 
+function ProjectTagChip({ tag }: { tag: ProjectTag }) {
   return (
-    <Chip
-      label={label}
-      variant="outlined"
-      sx={{
-        borderColor: c.border,
-        backgroundColor: c.bg,
-        color: alpha("#0B1220", 0.78),
-        fontWeight: 700,
-        "& .MuiChip-label": { px: 1.1 },
-        "&:hover": { backgroundColor: alpha(c.dot, 0.14) },
-        position: "relative",
-        pl: 1.2,
-        "&:before": {
-          content: '""',
-          position: "absolute",
-          left: 10,
-          width: 8,
-          height: 8,
-          borderRadius: 999,
-          backgroundColor: c.dot,
-        },
-      }}
-    />
+    <span
+      className={`inline-flex items-center rounded-full border px-3 py-1.5 text-sm font-medium ${toneClasses(
+        tag.tone,
+      )}`}
+    >
+      {tag.label}
+    </span>
   );
 }
 
-function ProjectRow({ project, flip }: { project: Project; flip?: boolean }) {
+function ProjectLinks({ links }: { links: ProjectLink[] }) {
   return (
-    <SectionCard
-      sx={{
-        p: { xs: 2, sm: 2.5, md: 3 },
-        backgroundColor: CARD_BG,
-        backgroundImage: CARD_GRADIENT,
-        border: CARD_BORDER,
-        boxShadow: CARD_SHADOW,
-        overflow: "hidden",
-      }}
-    >
-      <Box
-        className={`grid gap-5 lg:gap-8 ${
-          flip ? "lg:grid-cols-[1.2fr_0.8fr]" : "lg:grid-cols-[0.8fr_1.2fr]"
+    <div className="mt-5 flex flex-wrap gap-3">
+      {links.map((link, index) => {
+        const isPrimary = index === 0;
+
+        return (
+          <a
+            key={`${link.label}-${link.href}`}
+            href={link.href}
+            target="_blank"
+            rel="noreferrer noopener"
+            className={isPrimary ? "btn-primary" : "btn-secondary"}
+          >
+            {link.label}
+          </a>
+        );
+      })}
+    </div>
+  );
+}
+
+function ProjectCard({
+  project,
+  reverse = false,
+}: {
+  project: Project;
+  reverse?: boolean;
+}) {
+  return (
+    <article className="surface overflow-hidden p-4 sm:p-5 lg:p-6">
+      <div
+        className={`grid gap-6 lg:items-center ${
+          reverse
+            ? "lg:grid-cols-[1.12fr_0.88fr]"
+            : "lg:grid-cols-[0.88fr_1.12fr]"
         }`}
-        sx={{ alignItems: "center" }}
       >
-        <Box className={flip ? "lg:order-2" : "lg:order-1"}>
-          <Box
-            sx={{
-              position: "relative",
-              width: "100%",
-              borderRadius: 3,
-              border: `1px solid ${alpha("#0B1220", 0.1)}`,
-              backgroundColor: alpha("#0B1220", 0.04),
-              overflow: "hidden",
-              aspectRatio: { xs: "16/10", md: "16/9" },
-            }}
-          >
-            {project.imageSrc ? (
-              <Image
-                src={project.imageSrc}
-                alt={project.imageAlt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 560px"
-                style={{ objectFit: "cover" }}
-                priority={false}
-              />
-            ) : (
-              <Box
-                sx={{
-                  position: "absolute",
-                  inset: 0,
-                  background: `radial-gradient(circle at 30% 20%, ${alpha(
-                    "#A78BFA",
-                    0.35,
-                  )}, transparent 55%), radial-gradient(circle at 80% 70%, ${alpha(
-                    "#6EE7B7",
-                    0.25,
-                  )}, transparent 55%), ${alpha("#0B1220", 0.04)}`,
-                }}
-              />
-            )}
-          </Box>
-        </Box>
+        <div className={reverse ? "lg:order-2" : ""}>
+          <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04]">
+            <Image
+              src={project.imageSrc}
+              alt={project.imageAlt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 520px"
+              className="object-cover"
+            />
+          </div>
+        </div>
 
-        <Box className={flip ? "lg:order-1" : "lg:order-2"}>
-          <Typography
-            variant="h5"
-            sx={{ fontWeight: 900, color: "#0F172A", lineHeight: 1.15 }}
-          >
-            {project.title}
-          </Typography>
+        <div className={reverse ? "lg:order-1" : ""}>
+          <div className="flex flex-col gap-3">
+            {project.featured ? (
+              <span className="eyebrow w-fit">Featured project</span>
+            ) : null}
 
-          {project.subtitle ? (
-            <Typography
-              sx={{ mt: 0.75, fontWeight: 700, color: alpha("#0B1220", 0.65) }}
-            >
-              {project.subtitle}
-            </Typography>
-          ) : null}
+            <div>
+              <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white sm:text-3xl">
+                {project.title}
+              </h3>
 
-          <Typography
-            sx={{ mt: 1.5, color: alpha("#0B1220", 0.75), lineHeight: 1.6 }}
-          >
-            {project.description}
-          </Typography>
+              {project.subtitle ? (
+                <p className="mt-2 text-base font-medium text-slate-300 sm:text-lg">
+                  {project.subtitle}
+                </p>
+              ) : null}
+            </div>
 
-          <Stack direction="row" flexWrap="wrap" gap={1} sx={{ mt: 2 }}>
-            {[...project.tags]
-              .sort((a, b) => a.label.localeCompare(b.label))
-              .map((t) => (
-                <TagChip key={t.label} label={t.label} colorKey={t.color} />
-              ))}
-          </Stack>
+            <p className="max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+              {project.description}
+            </p>
+          </div>
 
-          {project.links?.length ? (
-            <Stack direction="row" flexWrap="wrap" gap={1.25} sx={{ mt: 2.5 }}>
-              {project.links.map((l) => (
-                <Box
-                  key={l.href + l.label}
-                  component={Link}
-                  href={l.href}
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <Box
-                    sx={{
-                      px: 1.75,
-                      py: 1,
-                      borderRadius: 2,
-                      fontWeight: 900,
-                      fontSize: 14,
-                      color: "#0F172A",
-                      backgroundColor: alpha("#0B1220", 0.06),
-                      border: `1px solid ${alpha("#0B1220", 0.1)}`,
-                      "&:hover": {
-                        backgroundColor: alpha("#0B1220", 0.1),
-                      },
-                    }}
-                  >
-                    {l.label} →
-                  </Box>
-                </Box>
-              ))}
-            </Stack>
-          ) : null}
-        </Box>
-      </Box>
-    </SectionCard>
+          <div className="mt-5 flex flex-wrap gap-2.5">
+            {project.tags.map((tag) => (
+              <ProjectTagChip key={tag.label} tag={tag} />
+            ))}
+          </div>
+
+          <ProjectLinks links={project.links} />
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function SectionHeader({
+  title,
+  subtitle,
+}: {
+  title: string;
+  subtitle: string;
+}) {
+  return (
+    <div>
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+        {title}
+      </p>
+      <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-white sm:text-3xl">
+        {title}
+      </h2>
+      <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+        {subtitle}
+      </p>
+    </div>
   );
 }
 
 export default function ProjectsPage() {
+  const featuredProject =
+    groups
+      .find((group) => group.projects.some((project) => project.featured))
+      ?.projects.find((project) => project.featured) ?? groups[0].projects[0];
+
+  const remainingGroups = groups.map((group) => ({
+    ...group,
+    projects: group.projects.filter((project) => project !== featuredProject),
+  }));
+
   return (
-    <main className="relative w-full">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full bg-[#A78BFA]/16 blur-3xl" />
-        <div className="absolute top-28 -right-28 h-[520px] w-[520px] rounded-full bg-[#6EE7B7]/12 blur-3xl" />
-        <div className="absolute -bottom-28 left-1/3 h-[620px] w-[620px] rounded-full bg-[#FF6B6B]/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.06),transparent_55%)]" />
-      </div>
+    <main className="relative overflow-hidden pb-20 sm:pb-24">
+      <div className="floating-orb left-[-120px] top-24 h-[260px] w-[260px] bg-violet-500/20 sm:h-[340px] sm:w-[340px]" />
+      <div className="floating-orb right-[-120px] top-24 h-[250px] w-[250px] bg-sky-500/20 sm:h-[330px] sm:w-[330px]" />
+      <div className="floating-orb bottom-[-120px] left-1/3 h-[300px] w-[300px] bg-fuchsia-500/15 sm:h-[390px] sm:w-[390px]" />
 
-      <Box
-        sx={{
-          position: "relative",
-          mx: "auto",
-          width: "100%",
-          maxWidth: PAGE_MAX,
-          px: { xs: 2, sm: 3, md: 4 },
-          py: { xs: 6, md: 8 },
-        }}
-      >
-        <Typography
-          sx={{
-            fontSize: { xs: 34, md: 52 },
-            fontWeight: 950,
-            lineHeight: 1.05,
-            letterSpacing: -0.5,
-            color: "#F6F3EE",
-          }}
-        >
-          Projects
-        </Typography>
+      <section className="site-container pt-8 sm:pt-12 lg:pt-16">
+        <div className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-end">
+          <div>
+            <span className="eyebrow">Projects</span>
 
-        <Typography
-          sx={{
-            mt: 1.5,
-            maxWidth: 720,
-            color: alpha("#F6F3EE", 0.7),
-            fontSize: { xs: 16, md: 18 },
-            lineHeight: 1.7,
-          }}
-        >
-          A selection of work across web apps, games, and Python — built with a
-          focus on clean UI, solid fundamentals, and shipping.
-        </Typography>
+            <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-white sm:text-5xl lg:text-6xl">
+              Selected work across
+              <br />
+              web apps, games,
+              <br />
+              and <span className="text-gradient">practical experiments.</span>
+            </h1>
 
-        <Divider sx={{ mt: 4, borderColor: alpha("#F6F3EE", 0.1) }} />
+            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+              A selection of projects built with a focus on clean UI, solid
+              fundamentals, and shipping. I care about how things work, but also
+              how they feel to use.
+            </p>
+          </div>
 
-        <Box sx={{ mt: 5, display: "flex", flexDirection: "column", gap: 4 }}>
-          {groups.map((g) => (
-            <Box
-              key={g.heading}
-              sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "baseline",
-                  justifyContent: "space-between",
-                  gap: 2,
-                  flexWrap: "wrap",
-                }}
-              >
-                <Box>
-                  <Typography
-                    sx={{
-                      color: alpha("#F6F3EE", 0.85),
-                      fontWeight: 900,
-                      letterSpacing: 1.5,
-                      fontSize: 24,
-                    }}
-                  >
-                    {g.heading.toUpperCase()}
-                  </Typography>
-                  {g.subheading ? (
-                    <Typography
-                      sx={{ mt: 0.75, color: alpha("#F6F3EE", 0.65) }}
-                    >
-                      {g.subheading}
-                    </Typography>
-                  ) : null}
-                </Box>
-              </Box>
+          <div className="surface p-5 sm:p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+              Browse by type
+            </p>
 
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-                {g.projects.map((p, idx) => (
-                  <ProjectRow key={p.title} project={p} flip={idx % 2 === 1} />
-                ))}
-              </Box>
-            </Box>
-          ))}
-        </Box>
-      </Box>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {groups.map((group) => (
+                <Link
+                  key={group.id}
+                  href={`#${group.id}`}
+                  className="pill transition hover:bg-white/[0.10]"
+                >
+                  {group.heading}
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-[20px] border border-white/10 bg-white/[0.04] p-4">
+                <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                  Total
+                </p>
+                <p className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">
+                  {groups.reduce(
+                    (sum, group) => sum + group.projects.length,
+                    0,
+                  )}
+                </p>
+                <p className="mt-1 text-sm text-slate-300">Projects</p>
+              </div>
+
+              <div className="rounded-[20px] border border-white/10 bg-white/[0.04] p-4">
+                <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                  Focus
+                </p>
+                <p className="mt-2 text-lg font-semibold text-white">
+                  Clean UI
+                </p>
+                <p className="mt-1 text-sm text-slate-300">
+                  Polish and structure
+                </p>
+              </div>
+
+              <div className="rounded-[20px] border border-white/10 bg-white/[0.04] p-4">
+                <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                  Stack
+                </p>
+                <p className="mt-2 text-lg font-semibold text-white">
+                  Full stack
+                </p>
+                <p className="mt-1 text-sm text-slate-300">
+                  Frontend to backend
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="site-container mt-16 sm:mt-20">
+        <div id="featured">
+          <SectionHeader
+            title="Featured"
+            subtitle="The project I’d want someone to open first."
+          />
+          <div className="mt-6">
+            <ProjectCard project={featuredProject} />
+          </div>
+        </div>
+      </section>
+
+      <section className="site-container mt-16 sm:mt-20">
+        <div className="space-y-14">
+          {remainingGroups.map((group) =>
+            group.projects.length ? (
+              <section key={group.id} id={group.id}>
+                <SectionHeader
+                  title={group.heading}
+                  subtitle={group.subheading}
+                />
+
+                <div className="mt-6 space-y-5">
+                  {group.projects.map((project, index) => (
+                    <ProjectCard
+                      key={project.title}
+                      project={project}
+                      reverse={index % 2 === 1}
+                    />
+                  ))}
+                </div>
+              </section>
+            ) : null,
+          )}
+        </div>
+      </section>
     </main>
   );
 }
