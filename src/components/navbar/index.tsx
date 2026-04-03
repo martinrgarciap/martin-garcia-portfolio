@@ -2,262 +2,133 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import * as React from "react";
-
-import {
-  AppBar,
-  Box,
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  ListItemButton,
-  ListItemText,
-  Toolbar,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-
-import CloseIcon from "@mui/icons-material/Close";
-import MenuIcon from "@mui/icons-material/Menu";
-import { alpha } from "@mui/material/styles";
-
-import { SocialLinks } from "@/components";
-
-const NAV_BG = "#E9EEF7";
-const NAV_BG_GRADIENT = `linear-gradient(180deg, ${alpha(
-  "#FFFFFF",
-  0.9,
-)}, ${alpha("#DCE6F7", 0.9)})`;
-const NAV_BORDER = `1px solid ${alpha("#0B1220", 0.12)}`;
-const NAV_SHADOW = `0 8px 30px ${alpha("#000", 0.18)}`;
-
-const DRAWER_BG = "#0B1220";
+import { useState } from "react";
+import SocialLinks from "../sociallinks";
 
 const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About Me", href: "/about" },
-  { label: "Projects", href: "/projects" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About Me" },
+  { href: "/projects", label: "Projects" },
 ];
+
+function isActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname.startsWith(href);
+}
 
 export default function NavBar() {
   const pathname = usePathname();
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-  const [open, setOpen] = React.useState(false);
-
-  React.useEffect(() => {
-    if (isDesktop) setOpen(false);
-  }, [isDesktop]);
-
-  const DesktopLinks = (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-      {navItems.map((item) => {
-        const active = pathname === item.href;
-        return (
-          <Box
-            key={item.href}
-            component={Link}
-            href={item.href}
-            style={{ textDecoration: "none" }}
-          >
-            <Box
-              sx={{
-                px: 1.5,
-                py: 1,
-                borderRadius: 2,
-                fontWeight: 800,
-                fontSize: 14,
-                color: active ? "white" : "#0F172A",
-                backgroundColor: active ? "#0F172A" : alpha("#0B1220", 0.06),
-                border: `1px solid ${alpha("#0B1220", active ? 0 : 0.08)}`,
-                "&:hover": {
-                  backgroundColor: active ? "#0F172A" : alpha("#0B1220", 0.1),
-                },
-              }}
-            >
-              {item.label}
-            </Box>
-          </Box>
-        );
-      })}
-
-      <SocialLinks
-        className="ml-2"
-        iconClassName="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-black/5 text-[#334155] transition hover:bg-black/10 hover:text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-black/10"
-      />
-    </Box>
-  );
-
-  const DrawerContent = (
-    <Box
-      sx={{
-        height: "100%",
-        width: "100%",
-        backgroundColor: DRAWER_BG,
-        color: "white",
-        display: "flex",
-        flexDirection: "column",
-      }}
-      role="presentation"
-    >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          px: 2,
-          py: 2,
-        }}
-      >
-        <Typography variant="h6" sx={{ fontWeight: 800 }}>
-          Menu
-        </Typography>
-
-        <IconButton
-          aria-label="Close menu"
-          onClick={() => setOpen((v) => !v)}
-          sx={{
-            color: "white",
-            borderRadius: 2,
-            backgroundColor: "rgba(255,255,255,0.10)",
-            "&:hover": { backgroundColor: "rgba(255,255,255,0.14)" },
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      </Box>
-
-      <Divider sx={{ borderColor: "rgba(255,255,255,0.10)" }} />
-
-      <List sx={{ px: 1.5, py: 2 }}>
-        {navItems.map((item) => {
-          const active = pathname === item.href;
-          return (
-            <ListItemButton
-              key={item.href}
-              component={Link}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              sx={{
-                borderRadius: 2,
-                my: 0.5,
-                px: 2,
-                py: 1.5,
-                backgroundColor: active
-                  ? "rgba(255,255,255,0.10)"
-                  : "transparent",
-                "&:hover": { backgroundColor: "rgba(255,255,255,0.10)" },
-              }}
-            >
-              <ListItemText
-                primary={item.label}
-                primaryTypographyProps={{ fontSize: 20, fontWeight: 800 }}
-              />
-            </ListItemButton>
-          );
-        })}
-      </List>
-
-      <Box sx={{ flex: 1 }} />
-
-      <Divider sx={{ borderColor: "rgba(255,255,255,0.10)" }} />
-
-      <Box sx={{ p: 2 }}>
-        <SocialLinks
-          className="flex w-full justify-between"
-          iconClassName="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-white/10 text-white transition hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/20"
-        />
-      </Box>
-    </Box>
-  );
+  const [open, setOpen] = useState(false);
 
   return (
-    <AppBar
-      position="sticky"
-      elevation={0}
-      sx={{
-        zIndex: (t) => t.zIndex.drawer + 1,
-        backgroundColor: NAV_BG,
-        backgroundImage: NAV_BG_GRADIENT,
-        borderBottom: NAV_BORDER,
-        boxShadow: NAV_SHADOW,
-        backdropFilter: "none",
-        color: "#0F172A",
-
-        pt: "env(safe-area-inset-top)",
-      }}
-    >
-      <Toolbar
-        sx={{
-          mx: "auto",
-          width: "100%",
-          maxWidth: 1100,
-          px: 2,
-          py: 0.75,
-        }}
-      >
-        <Box
-          component={Link}
-          href="/"
-          style={{ textDecoration: "none" }}
-          sx={{
-            px: 1.5,
-            py: 1,
-            borderRadius: 2,
-            fontWeight: 900,
-            color: "white",
-            backgroundColor: "#0F172A",
-            boxShadow: "0 1px 6px rgba(0,0,0,0.12)",
-            "&:hover": { filter: "brightness(1.08)" },
-          }}
-        >
-          Martin Garcia
-        </Box>
-
-        <Box sx={{ flex: 1 }} />
-
-        {isDesktop ? (
-          DesktopLinks
-        ) : (
-          <IconButton
-            aria-label="Open menu"
-            onClick={() => setOpen((v) => !v)}
-            sx={{
-              color: "#0F172A",
-              borderRadius: 2,
-              backgroundColor: alpha("#0B1220", 0.06),
-              "&:hover": { backgroundColor: alpha("#0B1220", 0.1) },
-            }}
+    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
+      <div className="site-container">
+        <div className="surface flex items-center justify-between rounded-full px-3 py-2 sm:px-4">
+          <Link
+            href="/"
+            className="rounded-full bg-white/[0.08] px-4 py-2 text-sm font-semibold tracking-wide text-white transition hover:bg-white/[0.12]"
+            onClick={() => setOpen(false)}
           >
-            <MenuIcon />
-          </IconButton>
-        )}
+            Martin Garcia
+          </Link>
 
-        <Drawer
-          anchor="right"
-          open={open}
-          onClose={() => setOpen(false)}
-          variant="temporary"
-          ModalProps={{
-            disableScrollLock: true,
-            keepMounted: false,
-          }}
-          PaperProps={{
-            sx: {
-              width: "100%",
-              maxWidth: "100vw",
-              height: "100dvh",
-              backgroundColor: DRAWER_BG,
-              overflowX: "hidden",
-            },
-          }}
-          BackdropProps={{ sx: { backgroundColor: "rgba(0,0,0,0.35)" } }}
-        >
-          {DrawerContent}
-        </Drawer>
-      </Toolbar>
-    </AppBar>
+          <nav className="hidden items-center gap-1 md:flex">
+            {navItems.map((item) => {
+              const active = isActive(pathname, item.href);
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`nav-link ${active ? "nav-link-active" : ""}`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="hidden md:flex">
+            <SocialLinks compact />
+          </div>
+
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((prev) => !prev)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white transition hover:bg-white/[0.08] md:hidden"
+          >
+            <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              {open ? (
+                <path
+                  d="M6 6L18 18M18 6L6 18"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+              ) : (
+                <>
+                  <path
+                    d="M4 7H20"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M4 12H20"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M4 17H20"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  />
+                </>
+              )}
+            </svg>
+          </button>
+        </div>
+
+        {open ? (
+          <div className="surface mt-3 rounded-[28px] p-3 md:hidden">
+            <nav className="flex flex-col gap-1">
+              {navItems.map((item) => {
+                const active = isActive(pathname, item.href);
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className={`rounded-2xl px-4 py-3 text-sm font-medium transition ${
+                      active
+                        ? "bg-white text-slate-950"
+                        : "text-slate-200 hover:bg-white/[0.06]"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <div className="mt-3 border-t border-white/10 pt-3">
+              <SocialLinks />
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </header>
   );
 }

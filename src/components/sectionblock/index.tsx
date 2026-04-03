@@ -1,75 +1,31 @@
-"use client";
-
-import { Box, Typography, alpha } from "@mui/material";
-
-function SectionBlock(props: {
+type SectionBlockProps = {
   id?: string;
   headline?: string;
   title: string;
   subtitle?: string;
   children: React.ReactNode;
-}) {
-  const { id, headline, title, subtitle, children } = props;
+  className?: string;
+};
 
+export default function SectionBlock({
+  id,
+  headline,
+  title,
+  subtitle,
+  children,
+  className = "",
+}: SectionBlockProps) {
   return (
-    <Box
-      component="section"
-      id={id}
-      sx={{
-        scrollMarginTop: 96,
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        minHeight: 0,
-      }}
-    >
-      {headline && (
-        <Typography
-          variant="overline"
-          sx={{ letterSpacing: 1.2, color: alpha("#fff", 0.6) }}
-        >
-          {headline}
-        </Typography>
-      )}
+    <section id={id} className={`scroll-mt-24 ${className}`}>
+      {headline ? <p className="eyebrow">{headline}</p> : null}
 
-      <Typography
-        variant="h4"
-        sx={{
-          mt: 0.5,
-          fontWeight: 900,
-          letterSpacing: -0.5,
-          color: alpha("#fff", 0.92),
-        }}
-      >
-        {title}
-      </Typography>
+      <h2 className={`section-title ${headline ? "mt-4" : ""}`}>{title}</h2>
 
       {subtitle ? (
-        <Typography
-          sx={{
-            mt: 1,
-            color: alpha("#fff", 0.72),
-            lineHeight: 1.7,
-            maxWidth: "70ch",
-          }}
-        >
-          {subtitle}
-        </Typography>
+        <p className="section-copy mt-4 max-w-3xl">{subtitle}</p>
       ) : null}
 
-      <Box
-        sx={{
-          mt: 2.25,
-          flex: 1,
-          minHeight: 0,
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        {children}
-      </Box>
-    </Box>
+      <div className="mt-8">{children}</div>
+    </section>
   );
 }
-
-export default SectionBlock;

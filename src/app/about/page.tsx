@@ -1,25 +1,14 @@
-"use client";
+import { ExperienceTimeline, SectionBlock, SkillsSection } from "@/components";
 
-import {
-  ExperienceTimeline,
-  SectionBlock,
-  SectionCard,
-  SkillsSection,
-} from "@/components";
-import type { TimelineEntry } from "@/components/experiencetimeline";
-
-import { Box, Container, Stack, Typography } from "@mui/material";
-import { alpha } from "@mui/material/styles";
-
-const TIMELINE: TimelineEntry[] = [
+const TIMELINE = [
   {
     title: "Scrum Master",
     org: "Auto Loans Services Canada",
     date: "Jun 2024 — Jan 2026",
     bullets: [
-      "Facilitated daily standups, sprint planning, and backlog refinement for cross-functional teams, using Jira to align priorities, clarify scope, and keep sprint commitments on track through consistent execution.",
-      "Maintained Jira boards and dashboards while monitoring key Agile metrics (e.g., burndown, carryover, throughput), improving visibility into progress and enabling earlier detection of delivery risks and slippage.",
-      "Led sprint retrospectives and captured actionable follow-ups in Confluence, driving continuous improvement through documented experiments and agreed process adjustments across sprint cycles.",
+      "Facilitated sprint ceremonies, backlog refinement, and team alignment across cross-functional work.",
+      "Tracked delivery health through Jira boards, dashboards, and Agile metrics.",
+      "Led retrospectives and follow-ups that improved visibility, rhythm, and execution.",
     ],
   },
   {
@@ -27,10 +16,9 @@ const TIMELINE: TimelineEntry[] = [
     org: "Influitive",
     date: "Jan 2022 — Jun 2024",
     bullets: [
-      "Contributed to the development and maintenance of customer-facing web applications used by 400+ enterprise customers, supporting feature delivery and ongoing reliability for organizations including AWS, Adobe, Cisco, and IBM.",
-      "Built and optimized reusable React and Next.js components using TypeScript, improving maintainability through consistent patterns, type safety, and clean component architecture across the codebase.",
-      "Implemented pixel-accurate, responsive UI using Material UI and Tailwind CSS, partnering closely with design and QA to validate UX details, edge cases, and cross-browser behavior before release.",
-      "Integrated frontend features with GraphQL and REST APIs, strengthening data flow and error handling while improving performance through better client-side state management and optimized request patterns.",
+      "Built and maintained customer-facing web applications used by large enterprise clients.",
+      "Developed reusable React and Next.js components with TypeScript and clean frontend patterns.",
+      "Integrated frontend work with GraphQL and REST APIs while improving UI quality and reliability.",
     ],
   },
   {
@@ -38,174 +26,145 @@ const TIMELINE: TimelineEntry[] = [
     org: "Canada's Wonderland",
     date: "Sept 2019 — Jun 2021",
     bullets: [
-      "Oversaw day-to-day operations across multiple high-volume food & beverage locations, coordinating staffing, station coverage, and service flow to maintain speed, quality, and guest experience during peak demand.",
-      "Led and coached frontline teams (hiring/onboarding, shift leadership, performance feedback), ensuring adherence to safety, cash-handling, and operational standards while improving team consistency and accountability.",
-      "Planned and executed daily labor and scheduling decisions based on forecasted traffic and real-time conditions, reallocating resources quickly to reduce bottlenecks and keep service levels stable.",
+      "Oversaw operations across multiple high-volume food and beverage locations.",
+      "Led frontline teams, handled staffing decisions, and maintained service standards during peak demand.",
+      "Balanced team coordination, guest experience, and day-to-day execution in fast-paced environments.",
     ],
+  },
+];
+
+const workingStyle = [
+  {
+    title: "Clarity first",
+    desc: "I like clear scope, strong priorities, and less confusion before execution starts.",
+    accent: "from-sky-400 to-cyan-300",
+  },
+  {
+    title: "Calm systems",
+    desc: "Reusable patterns and strong defaults make teams move faster with less friction.",
+    accent: "from-violet-400 to-fuchsia-300",
+  },
+  {
+    title: "Iterate well",
+    desc: "I prefer steady improvements, visible progress, and product decisions grounded in use.",
+    accent: "from-emerald-400 to-teal-300",
   },
 ];
 
 export default function AboutPage() {
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        background: `
-          radial-gradient(800px 400px at 12% 10%, ${alpha("#3B82F6", 0.22)}, transparent 60%),
-          radial-gradient(900px 500px at 85% 25%, ${alpha("#8B5CF6", 0.18)}, transparent 55%),
-          linear-gradient(180deg, #0B1220 0%, #0B1220 55%, #09101C 100%)
-        `,
-      }}
-    >
-      <Box sx={{ pt: { xs: 6, md: 9 }, pb: { xs: 5, md: 7 } }}>
-        <Container maxWidth="lg">
-          <SectionCard sx={{ p: { xs: 2.75, md: 4 } }}>
-            <Stack spacing={2.2}>
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 900,
-                  letterSpacing: -1,
-                  lineHeight: 1.05,
-                  color: "text.primary",
-                }}
-              >
-                About{" "}
-                <Box
-                  component="span"
-                  sx={{
-                    background:
-                      "linear-gradient(90deg, #3B82F6 0%, #22D3EE 50%, #8B5CF6 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  Me
-                </Box>
-              </Typography>
+    <main className="relative overflow-hidden pb-20 sm:pb-24">
+      <div className="floating-orb left-[-120px] top-24 h-[260px] w-[260px] bg-violet-500/20 sm:h-[340px] sm:w-[340px]" />
+      <div className="floating-orb right-[-120px] top-28 h-[240px] w-[240px] bg-sky-500/20 sm:h-[320px] sm:w-[320px]" />
+      <div className="floating-orb bottom-[-120px] left-1/3 h-[280px] w-[280px] bg-fuchsia-500/15 sm:h-[380px] sm:w-[380px]" />
 
-              <Typography
-                sx={{
-                  color: "text.secondary",
-                  fontSize: 16,
-                  lineHeight: 1.7,
-                  width: "100%",
-                }}
-              >
-                I’m a software engineer who cares about clean UI, predictable
-                delivery, and building products people actually enjoy using. I
-                like turning unclear requirements into simple, polished
-                experiences — and I’m happiest when I’m shipping, iterating, and
-                improving.
-              </Typography>
-            </Stack>
-          </SectionCard>
-        </Container>
-      </Box>
+      <section className="site-container pt-8 sm:pt-12 lg:pt-16">
+        <div className="surface-strong p-6 sm:p-8 lg:p-10">
+          <span className="eyebrow">About me</span>
 
-      <Container maxWidth="lg">
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-            columnGap: { md: 5 },
-            rowGap: { xs: 6, md: 0 },
-            alignItems: "start",
-          }}
-        >
-          <Box sx={{ minHeight: 0 }}>
-            <SectionBlock
-              id="skills"
-              title="What I work with"
-              subtitle="A snapshot of the tools I’m comfortable shipping with."
-            >
-              <SectionCard
-                sx={{
-                  p: { xs: 2, md: 3 },
-                  width: "100%",
-                  flex: 1,
-                  minHeight: 0,
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Box sx={{ flex: 1, minHeight: 0, overflow: "auto", pr: 0.5 }}>
-                  <SkillsSection
-                    showHeading={false}
-                    headingTone="dark"
-                    compact
-                  />
-                </Box>
-              </SectionCard>
-            </SectionBlock>
-          </Box>
+          <div className="mt-5 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+            <div>
+              <h1 className="text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-white sm:text-5xl lg:text-6xl">
+                Building clean products
+                <br />
+                with strong UI instincts
+                <br />
+                and <span className="text-gradient">practical delivery.</span>
+              </h1>
 
-          <Box sx={{ minHeight: 0 }}>
-            <SectionBlock
-              id="experience"
-              title="Experience"
-              subtitle="A quick narrative of where I’ve delivered value recently."
-            >
-              <Box
-                sx={{ width: "100%", flex: 1, minHeight: 0, display: "flex" }}
-              >
-                <ExperienceTimeline items={TIMELINE} />
-              </Box>
-            </SectionBlock>
-          </Box>
-        </Box>
-      </Container>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+                I’m Martin Garcia, a software developer who enjoys turning
+                unclear requirements into polished, usable experiences. I care
+                about interface quality, calm execution, and building things
+                that feel intentional from both the product and engineering
+                side.
+              </p>
+            </div>
 
-      <Container maxWidth="lg">
-        <Box sx={{ mt: { xs: 6, md: 7 } }}>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              <div className="rounded-[24px] border border-white/10 bg-white/[0.05] p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  Focus
+                </p>
+                <p className="mt-3 text-lg font-semibold text-white">
+                  Frontend-first mindset
+                </p>
+                <p className="mt-2 text-sm leading-7 text-slate-300">
+                  Strong attention to layout, spacing, polish, and the way a
+                  product feels in use.
+                </p>
+              </div>
+
+              <div className="rounded-[24px] border border-white/10 bg-white/[0.05] p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  Strength
+                </p>
+                <p className="mt-3 text-lg font-semibold text-white">
+                  Product + execution
+                </p>
+                <p className="mt-2 text-sm leading-7 text-slate-300">
+                  I like bridging clean implementation with practical team
+                  delivery and clear priorities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="site-container mt-16 sm:mt-20">
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <SectionBlock
-            id="values"
-            headline="Working style"
-            title="How I like to work"
-            subtitle="Patterns I try to bring to teams so work stays calm and output stays high."
+            id="skills"
+            title="What I work with"
+            subtitle="A focused snapshot of the tools I’m most comfortable building and shipping with."
           >
-            <Box
-              sx={{
-                display: "grid",
-                gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
-                gap: { xs: 1.75, md: 2 },
-              }}
-            >
-              {[
-                {
-                  title: "Clarity → Execution",
-                  desc: "I’m big on aligning scope and success criteria early, then moving fast with confidence.",
-                },
-                {
-                  title: "Strong defaults",
-                  desc: "Reusable components, predictable patterns, and conventions that keep the codebase clean.",
-                },
-                {
-                  title: "Iterate in public",
-                  desc: "Ship, measure, refine. I prefer small wins that compound instead of big-bang launches.",
-                },
-              ].map((c) => (
-                <SectionCard key={c.title} sx={{ p: 3 }}>
-                  <Typography sx={{ fontWeight: 900, color: "text.primary" }}>
-                    {c.title}
-                  </Typography>
-                  <Typography sx={{ color: "text.secondary", mt: 1 }}>
-                    {c.desc}
-                  </Typography>
-                </SectionCard>
-              ))}
-            </Box>
+            <div className="mt-0">
+              <SkillsSection showHeading={false} compact />
+            </div>
           </SectionBlock>
-        </Box>
-      </Container>
 
-      <Box sx={{ py: 6 }}>
-        <Container maxWidth="lg">
-          <Typography variant="caption" sx={{ color: alpha("#fff", 0.7) }}>
-            © {new Date().getFullYear()} Martin Garcia
-          </Typography>
-        </Container>
-      </Box>
-    </Box>
+          <SectionBlock
+            id="experience"
+            title="Experience"
+            subtitle="A quick view of the environments where I’ve delivered the most value."
+          >
+            <ExperienceTimeline items={TIMELINE} />
+          </SectionBlock>
+        </div>
+      </section>
+
+      <section className="site-container mt-16 sm:mt-20">
+        <SectionBlock
+          id="working-style"
+          headline="Working style"
+          title="How I like to work"
+          subtitle="The habits and patterns I try to bring into teams and projects."
+        >
+          <div className="grid gap-4 md:grid-cols-3">
+            {workingStyle.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-[24px] border border-white/10 bg-white/[0.05] p-5 sm:p-6"
+              >
+                <div
+                  className={`h-1.5 w-16 rounded-full bg-gradient-to-r ${item.accent}`}
+                />
+                <h3 className="mt-4 text-lg font-semibold tracking-[-0.03em] text-white sm:text-xl">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-300 sm:text-base">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </SectionBlock>
+      </section>
+
+      <footer className="site-container pt-14 text-sm text-slate-400">
+        © {new Date().getFullYear()} Martin Garcia
+      </footer>
+    </main>
   );
 }

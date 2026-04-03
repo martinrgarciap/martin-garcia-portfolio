@@ -1,57 +1,81 @@
-import IconBtn from "@/components/iconbtn";
+import IconBtn from "../iconbtn";
 
 type SocialLinksProps = {
-  className?: string;
-  iconClassName?: string;
+  compact?: boolean;
 };
 
-const SocialLinks = ({
-  className = "",
-  iconClassName = "",
-}: SocialLinksProps) => (
-  <div className={`flex items-center gap-3 m-3 ${className}`}>
-    <IconBtn
-      href="https://github.com/martinrgarciap"
-      label="GitHub"
-      className={iconClassName}
-    >
+const links = [
+  {
+    label: "GitHub",
+    href: "https://github.com/martinrgarciap",
+    icon: (
       <svg
         viewBox="0 0 24 24"
-        className="h-5 w-5 fill-current"
+        width="18"
+        height="18"
+        fill="currentColor"
         aria-hidden="true"
       >
-        <path d="M12 .5C5.73.5.75 5.62.75 12c0 5.1 3.29 9.43 7.86 10.96.58.11.79-.26.79-.57v-2.1c-3.2.71-3.87-1.38-3.87-1.38-.52-1.36-1.27-1.72-1.27-1.72-1.04-.73.08-.72.08-.72 1.15.08 1.76 1.2 1.76 1.2 1.02 1.77 2.68 1.26 3.33.96.1-.76.4-1.26.72-1.55-2.55-.3-5.23-1.3-5.23-5.78 0-1.28.45-2.32 1.19-3.14-.12-.3-.52-1.5.11-3.13 0 0 .97-.32 3.18 1.2a10.7 10.7 0 0 1 5.8 0c2.2-1.52 3.17-1.2 3.17-1.2.64 1.63.24 2.83.12 3.13.74.82 1.19 1.86 1.19 3.14 0 4.5-2.69 5.47-5.25 5.77.41.37.78 1.1.78 2.22v3.29c0 .31.21.69.8.57A11.5 11.5 0 0 0 23.25 12C23.25 5.62 18.27.5 12 .5z" />
+        <path d="M12 .5C5.649.5.5 5.649.5 12a11.5 11.5 0 0 0 7.86 10.916c.575.105.785-.25.785-.556 0-.273-.01-1-.016-1.961-3.197.695-3.873-1.54-3.873-1.54-.523-1.328-1.277-1.682-1.277-1.682-1.043-.713.08-.699.08-.699 1.154.081 1.761 1.185 1.761 1.185 1.025 1.758 2.69 1.25 3.344.955.104-.743.401-1.25.729-1.538-2.552-.291-5.236-1.276-5.236-5.681 0-1.255.448-2.281 1.183-3.086-.119-.291-.513-1.463.113-3.05 0 0 .965-.309 3.163 1.178A10.97 10.97 0 0 1 12 6.03c.973.004 1.954.131 2.87.385 2.196-1.487 3.16-1.178 3.16-1.178.628 1.587.234 2.759.115 3.05.737.805 1.182 1.831 1.182 3.086 0 4.416-2.688 5.386-5.248 5.671.412.356.779 1.058.779 2.133 0 1.54-.014 2.782-.014 3.16 0 .309.207.667.791.554A11.502 11.502 0 0 0 23.5 12C23.5 5.649 18.351.5 12 .5Z" />
       </svg>
-    </IconBtn>
-
-    <IconBtn
-      href="https://www.linkedin.com/in/martin-garcia-prieto/"
-      label="LinkedIn"
-      className={iconClassName}
-    >
+    ),
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/martin-garcia-prieto/",
+    icon: (
       <svg
         viewBox="0 0 24 24"
-        className="h-5 w-5 fill-current"
+        width="18"
+        height="18"
+        fill="currentColor"
         aria-hidden="true"
       >
-        <path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3.5 9h3v12h-3V9zm7 0h2.9v1.64h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6V21h-3v-6.1c0-1.46-.02-3.34-2.04-3.34-2.04 0-2.35 1.6-2.35 3.24V21h-3V9z" />
+        <path d="M4.983 3.5A2.483 2.483 0 1 0 4.983 8.466 2.483 2.483 0 0 0 4.983 3.5ZM3 9.75h3.966V21H3V9.75ZM9.417 9.75h3.804v1.536h.054c.53-1.005 1.824-2.067 3.754-2.067 4.014 0 4.754 2.642 4.754 6.078V21h-3.966v-5.055c0-1.206-.021-2.758-1.681-2.758-1.683 0-1.94 1.315-1.94 2.672V21H9.417V9.75Z" />
       </svg>
-    </IconBtn>
-
-    <IconBtn
-      href="https://linktr.ee/martinrgarciap"
-      label="Linktree"
-      className={iconClassName}
-    >
+    ),
+  },
+  {
+    label: "Email",
+    href: "mailto:martinrgarciap@gmail.com",
+    icon: (
       <svg
         viewBox="0 0 24 24"
-        className="h-5 w-5 fill-current"
+        width="18"
+        height="18"
+        fill="none"
         aria-hidden="true"
       >
-        <path d="M12 2l2.6 4.4h5L16 10l3.6 6.2h-5L12 12.5 9.4 16.2h-5L8 10 4.4 6.4h5L12 2zm0 12.2L13.2 16v6h-2.4v-6L12 14.2z" />
+        <path
+          d="M4 6.75H20C20.69 6.75 21.25 7.31 21.25 8V16C21.25 16.69 20.69 17.25 20 17.25H4C3.31 17.25 2.75 16.69 2.75 16V8C2.75 7.31 3.31 6.75 4 6.75Z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+        />
+        <path
+          d="M3.5 8L12 13.75L20.5 8"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
-    </IconBtn>
-  </div>
-);
+    ),
+  },
+];
 
-export default SocialLinks;
+export default function SocialLinks({ compact = false }: SocialLinksProps) {
+  return (
+    <div className={`flex items-center ${compact ? "gap-2" : "gap-3"}`}>
+      {links.map((item) => (
+        <IconBtn
+          key={item.label}
+          href={item.href}
+          label={item.label}
+          className={compact ? "h-10 w-10" : ""}
+        >
+          {item.icon}
+        </IconBtn>
+      ))}
+    </div>
+  );
+}
