@@ -85,6 +85,32 @@ const groups: ProjectGroup[] = [
         ],
       },
       {
+        title: "RideShare",
+        subtitle: "Distributed ride-sharing backend",
+        description:
+          "A distributed Uber-style ride-sharing backend built with Go microservices, RabbitMQ messaging, Docker, Kubernetes, and Tilt. It models service boundaries for API access, trip orchestration, driver workflows, and production-ready deployment manifests.",
+        tags: [
+          { label: "Go", tone: "emerald" },
+          { label: "Microservices", tone: "sky" },
+          { label: "RabbitMQ", tone: "amber" },
+          { label: "Docker", tone: "sky" },
+          { label: "Kubernetes", tone: "violet" },
+          { label: "Tilt", tone: "emerald" },
+        ],
+        imageSrc: "/rideshare.png",
+        imageAlt: "RideShare application screenshot",
+        links: [
+          {
+            label: "Live Demo",
+            href: "https://ride-share-seven-blond.vercel.app/",
+          },
+          {
+            label: "GitHub",
+            href: "https://github.com/martinrgarciap/RideShare",
+          },
+        ],
+      },
+      {
         title: "YelpCamp Campgrounds Finder",
         subtitle: "Plan trips, save spots, search and organize",
         description:
@@ -97,10 +123,6 @@ const groups: ProjectGroup[] = [
         imageSrc: "/campgrounds.png",
         imageAlt: "YelpCamp project screenshot",
         links: [
-          {
-            label: "Live Site",
-            href: "https://yelpcamp-martin-a114876011e6.herokuapp.com/",
-          },
           {
             label: "GitHub",
             href: "https://github.com/martinrgarciap/yelpcamp",
