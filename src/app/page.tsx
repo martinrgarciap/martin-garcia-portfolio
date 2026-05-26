@@ -3,6 +3,10 @@ import Link from "next/link";
 
 const focusAreas = [
   {
+    label: "Go",
+    className: "border-emerald-400/20 bg-emerald-400/10 text-emerald-100",
+  },
+  {
     label: "React",
     className: "border-sky-400/20 bg-sky-400/10 text-sky-100",
   },
@@ -11,12 +15,8 @@ const focusAreas = [
     className: "border-violet-400/20 bg-violet-400/10 text-violet-100",
   },
   {
-    label: "TypeScript",
-    className: "border-cyan-400/20 bg-cyan-400/10 text-cyan-100",
-  },
-  {
-    label: "Spring Boot",
-    className: "border-emerald-400/20 bg-emerald-400/10 text-emerald-100",
+    label: "PostgreSQL",
+    className: "border-amber-400/20 bg-amber-400/10 text-amber-100",
   },
 ];
 

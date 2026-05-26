@@ -53,22 +53,37 @@ const workingStyle = [
 
 const stackGroups = [
   {
-    title: "Frontend",
+    title: "Backend & APIs",
     dotClass: "bg-sky-400",
     chipClass: "border-sky-400/20 bg-sky-400/10 text-sky-100",
-    chips: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Material UI"],
+    chips: [
+      "Go",
+      "Java",
+      "Spring Boot",
+      "REST APIs",
+      "Chi",
+      "JWT Auth",
+      "Microservices",
+      "Swagger",
+    ],
   },
   {
-    title: "Backend",
+    title: "Data & Messaging",
     dotClass: "bg-violet-400",
     chipClass: "border-violet-400/20 bg-violet-400/10 text-violet-100",
-    chips: ["Java", "Spring Boot", "REST APIs", "Hibernate", "PostgreSQL"],
+    chips: ["PostgreSQL", "RabbitMQ", "Redis", "SQL", "MongoDB"],
   },
   {
-    title: "Tools",
+    title: "Frontend",
     dotClass: "bg-emerald-400",
     chipClass: "border-emerald-400/20 bg-emerald-400/10 text-emerald-100",
-    chips: ["Git", "GitHub", "JUnit 5", "Vercel", "Railway", "Jira"],
+    chips: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vite"],
+  },
+  {
+    title: "Infrastructure & Tools",
+    dotClass: "bg-amber-400",
+    chipClass: "border-amber-400/20 bg-amber-400/10 text-amber-100",
+    chips: ["Docker", "Kubernetes", "Tilt", "GitHub", "Vercel", "JUnit 5"],
   },
 ];
 

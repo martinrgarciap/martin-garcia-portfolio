@@ -54,64 +54,67 @@ const skillColor = {
 
 const skillGroups: SkillGroup[] = [
   {
+    title: "Backend & APIs",
+    description:
+      "Designing production-minded APIs, service boundaries, authentication flows, and backend systems with practical data handling.",
+    skills: [
+      { label: "Go", color: "green" },
+      { label: "Java", color: "green" },
+      { label: "Spring Boot", color: "blue" },
+      { label: "REST APIs", color: "blue" },
+      { label: "Chi", color: "purple" },
+      { label: "JWT Auth", color: "amber" },
+      { label: "Microservices", color: "red" },
+      { label: "Rate Limiting", color: "amber" },
+      { label: "Swagger / OpenAPI", color: "purple" },
+    ],
+  },
+  {
+    title: "Data & Messaging",
+    description:
+      "Working with persistence, caching, queues, migrations, and data flows across full-stack and distributed systems.",
+    skills: [
+      { label: "PostgreSQL", color: "blue" },
+      { label: "RabbitMQ", color: "amber" },
+      { label: "Redis", color: "red" },
+      { label: "SQL", color: "amber" },
+      { label: "MongoDB", color: "green" },
+      { label: "Docker Compose", color: "blue" },
+      { label: "Database Migrations", color: "purple" },
+      { label: "Database Seeding", color: "green" },
+    ],
+  },
+  {
     title: "Frontend",
     description:
-      "Building polished, responsive interfaces with a strong focus on usability, visual structure, and state-driven UI.",
+      "Building polished, responsive interfaces with reusable components, strong layout, and modern TypeScript workflows.",
     skills: [
       { label: "React", color: "blue" },
       { label: "Next.js", color: "purple" },
       { label: "TypeScript", color: "purple" },
-      { label: "JavaScript", color: "amber" },
       { label: "Tailwind CSS", color: "amber" },
+      { label: "Vite", color: "green" },
       { label: "Material UI", color: "blue" },
-      { label: "HTML", color: "amber" },
-      { label: "CSS", color: "blue" },
+      { label: "JavaScript", color: "amber" },
       { label: "Responsive Design", color: "green" },
     ],
   },
   {
-    title: "Backend",
+    title: "Infrastructure & Shipping",
     description:
-      "Designing APIs and backend systems with clean architecture, validation, and practical full-stack integration.",
+      "Using container, local Kubernetes, deployment, and collaboration tooling to build, test, and ship with confidence.",
     skills: [
-      { label: "Java", color: "green" },
-      { label: "Spring Boot", color: "blue" },
-      { label: "Spring Data JPA", color: "green" },
-      { label: "Hibernate", color: "purple" },
-      { label: "REST APIs", color: "blue" },
-      { label: "Validation", color: "amber" },
-      { label: "Pagination", color: "red" },
-      { label: "Filtering & Search", color: "red" },
-      { label: "Exception Handling", color: "amber" },
-    ],
-  },
-  {
-    title: "Databases & Data",
-    description:
-      "Working with relational and document databases, query logic, and data-driven application flows.",
-    skills: [
-      { label: "PostgreSQL", color: "blue" },
-      { label: "MongoDB", color: "green" },
-      { label: "SQL", color: "amber" },
-      { label: "H2", color: "purple" },
-      { label: "Database Seeding", color: "red" },
-      { label: "Specifications", color: "purple" },
-    ],
-  },
-  {
-    title: "Testing & Tools",
-    description:
-      "Using practical tooling to build, test, debug, and ship software with confidence.",
-    skills: [
+      { label: "Docker", color: "blue" },
+      { label: "Kubernetes", color: "purple" },
+      { label: "Tilt", color: "green" },
+      { label: "Vercel", color: "purple" },
+      { label: "GitHub", color: "blue" },
+      { label: "Git", color: "red" },
       { label: "JUnit 5", color: "green" },
       { label: "Mockito", color: "purple" },
       { label: "MockMvc", color: "blue" },
       { label: "Maven", color: "amber" },
-      { label: "Git", color: "red" },
-      { label: "GitHub", color: "blue" },
       { label: "Postman", color: "amber" },
-      { label: "Vercel", color: "purple" },
-      { label: "Railway", color: "green" },
     ],
   },
   {
@@ -124,6 +127,7 @@ const skillGroups: SkillGroup[] = [
       { label: "Python", color: "blue" },
       { label: "OpenCV", color: "purple" },
       { label: "Web Scraping", color: "amber" },
+      { label: "SendGrid", color: "blue" },
       { label: "UI/UX Thinking", color: "red" },
       { label: "Product Mindset", color: "green" },
       { label: "Agile / Scrum", color: "purple" },
@@ -219,15 +223,13 @@ function SkillGroupCard({
         gap={1.15}
         sx={{ mt: 2.25 }}
       >
-        {[...group.skills]
-          .sort((a, b) => a.label.localeCompare(b.label))
-          .map((skill) => (
-            <SkillChip
-              key={skill.label}
-              label={skill.label}
-              colorKey={skill.color}
-            />
-          ))}
+        {group.skills.map((skill) => (
+          <SkillChip
+            key={skill.label}
+            label={skill.label}
+            colorKey={skill.color}
+          />
+        ))}
       </Stack>
     </Box>
   );
