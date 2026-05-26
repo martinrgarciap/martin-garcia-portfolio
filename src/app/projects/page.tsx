@@ -18,8 +18,8 @@ type Project = {
   subtitle?: string;
   description: string;
   tags: ProjectTag[];
-  imageSrc: string;
-  imageAlt: string;
+  imageSrc?: string;
+  imageAlt?: string;
   links: ProjectLink[];
   featured?: boolean;
 };
@@ -79,6 +79,10 @@ const groups: ProjectGroup[] = [
         imageAlt: "Portfolio website screenshot",
         links: [
           {
+            label: "Live Demo",
+            href: "https://martin-garcia-portfolio.vercel.app/",
+          },
+          {
             label: "GitHub",
             href: "https://github.com/martinrgarciap/martin-garcia-portfolio",
           },
@@ -126,6 +130,26 @@ const groups: ProjectGroup[] = [
           {
             label: "GitHub",
             href: "https://github.com/martinrgarciap/yelpcamp",
+          },
+        ],
+      },
+      {
+        title: "GopherSocial",
+        subtitle: "Go social-network API",
+        description:
+          "A Go social-network API with JWT authentication, posts, comments, followers, user feeds, invitation-based account activation, rate limiting, Swagger docs, PostgreSQL persistence, and optional Redis-backed caching. Includes a small Vite, React, and TypeScript frontend.",
+        tags: [
+          { label: "Go", tone: "emerald" },
+          { label: "Chi", tone: "sky" },
+          { label: "PostgreSQL", tone: "amber" },
+          { label: "Redis", tone: "violet" },
+          { label: "JWT", tone: "sky" },
+          { label: "React", tone: "emerald" },
+        ],
+        links: [
+          {
+            label: "GitHub",
+            href: "https://github.com/martinrgarciap/GopherSocial",
           },
         ],
       },
@@ -257,13 +281,31 @@ function ProjectCard({
       >
         <div className={reverse ? "lg:order-2" : ""}>
           <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04]">
-            <Image
-              src={project.imageSrc}
-              alt={project.imageAlt}
-              fill
-              sizes="(max-width: 1024px) 100vw, 520px"
-              className="object-cover"
-            />
+            {project.imageSrc ? (
+              <Image
+                src={project.imageSrc}
+                alt={project.imageAlt ?? `${project.title} project preview`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 520px"
+                className="object-cover"
+              />
+            ) : (
+              <div className="flex h-full flex-col justify-between bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.26),transparent_34%),linear-gradient(135deg,rgba(15,23,42,0.95),rgba(30,41,59,0.84))] p-6">
+                <div className="flex items-center gap-2">
+                  <span className="h-3 w-3 rounded-full bg-emerald-300" />
+                  <span className="h-3 w-3 rounded-full bg-sky-300" />
+                  <span className="h-3 w-3 rounded-full bg-amber-300" />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-200">
+                    API project
+                  </p>
+                  <p className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">
+                    {project.title}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
