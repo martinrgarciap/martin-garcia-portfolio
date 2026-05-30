@@ -146,6 +146,8 @@ const groups: ProjectGroup[] = [
           { label: "JWT", tone: "sky" },
           { label: "React", tone: "emerald" },
         ],
+        imageSrc: "/gophersocial.png",
+        imageAlt: "GopherSocial project screenshot",
         links: [
           {
             label: "GitHub",
