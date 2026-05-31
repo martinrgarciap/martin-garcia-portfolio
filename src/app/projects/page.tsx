@@ -38,6 +38,59 @@ const groups: ProjectGroup[] = [
     subheading: "Products and full-stack apps I’ve built.",
     projects: [
       {
+        title: "RideShare",
+        subtitle: "Distributed ride-sharing backend",
+        description:
+          "A distributed Uber-style ride-sharing backend built with Go microservices, RabbitMQ messaging, Docker, Kubernetes, and Tilt. It models service boundaries for API access, trip orchestration, driver workflows, and production-ready deployment manifests.",
+        tags: [
+          { label: "Go", tone: "emerald" },
+          { label: "Microservices", tone: "sky" },
+          { label: "RabbitMQ", tone: "amber" },
+          { label: "Docker", tone: "sky" },
+          { label: "Kubernetes", tone: "violet" },
+          { label: "Tilt", tone: "emerald" },
+        ],
+        imageSrc: "/rideshare.png",
+        imageAlt: "RideShare application screenshot",
+        links: [
+          {
+            label: "Live Demo",
+            href: "https://ride-share-seven-blond.vercel.app/",
+          },
+          {
+            label: "GitHub",
+            href: "https://github.com/martinrgarciap/RideShare",
+          },
+        ],
+        featured: true,
+      },
+      {
+        title: "GopherSocial",
+        subtitle: "Go social-network API",
+        description:
+          "A Go social-network API with JWT authentication, posts, comments, followers, user feeds, invitation-based account activation, rate limiting, Swagger docs, PostgreSQL persistence, and optional Redis-backed caching. Includes a small Vite, React, and TypeScript frontend.",
+        tags: [
+          { label: "Go", tone: "emerald" },
+          { label: "Chi", tone: "sky" },
+          { label: "PostgreSQL", tone: "amber" },
+          { label: "Redis", tone: "violet" },
+          { label: "JWT", tone: "sky" },
+          { label: "React", tone: "emerald" },
+        ],
+        imageSrc: "/gophersocial.png",
+        imageAlt: "GopherSocial project screenshot",
+        links: [
+          {
+            label: "Live Demo",
+            href: "https://gopher-social-five.vercel.app/",
+          },
+          {
+            label: "GitHub",
+            href: "https://github.com/martinrgarciap/GopherSocial",
+          },
+        ],
+      },
+      {
         title: "PaymentFlow",
         subtitle: "Full-stack payments dashboard",
         description:
@@ -62,7 +115,6 @@ const groups: ProjectGroup[] = [
             href: "https://github.com/martinrgarciap/paymentflow",
           },
         ],
-        featured: true,
       },
       {
         title: "Portfolio Website",
@@ -89,32 +141,6 @@ const groups: ProjectGroup[] = [
         ],
       },
       {
-        title: "RideShare",
-        subtitle: "Distributed ride-sharing backend",
-        description:
-          "A distributed Uber-style ride-sharing backend built with Go microservices, RabbitMQ messaging, Docker, Kubernetes, and Tilt. It models service boundaries for API access, trip orchestration, driver workflows, and production-ready deployment manifests.",
-        tags: [
-          { label: "Go", tone: "emerald" },
-          { label: "Microservices", tone: "sky" },
-          { label: "RabbitMQ", tone: "amber" },
-          { label: "Docker", tone: "sky" },
-          { label: "Kubernetes", tone: "violet" },
-          { label: "Tilt", tone: "emerald" },
-        ],
-        imageSrc: "/rideshare.png",
-        imageAlt: "RideShare application screenshot",
-        links: [
-          {
-            label: "Live Demo",
-            href: "https://ride-share-seven-blond.vercel.app/",
-          },
-          {
-            label: "GitHub",
-            href: "https://github.com/martinrgarciap/RideShare",
-          },
-        ],
-      },
-      {
         title: "YelpCamp Campgrounds Finder",
         subtitle: "Plan trips, save spots, search and organize",
         description:
@@ -130,28 +156,6 @@ const groups: ProjectGroup[] = [
           {
             label: "GitHub",
             href: "https://github.com/martinrgarciap/yelpcamp",
-          },
-        ],
-      },
-      {
-        title: "GopherSocial",
-        subtitle: "Go social-network API",
-        description:
-          "A Go social-network API with JWT authentication, posts, comments, followers, user feeds, invitation-based account activation, rate limiting, Swagger docs, PostgreSQL persistence, and optional Redis-backed caching. Includes a small Vite, React, and TypeScript frontend.",
-        tags: [
-          { label: "Go", tone: "emerald" },
-          { label: "Chi", tone: "sky" },
-          { label: "PostgreSQL", tone: "amber" },
-          { label: "Redis", tone: "violet" },
-          { label: "JWT", tone: "sky" },
-          { label: "React", tone: "emerald" },
-        ],
-        imageSrc: "/gophersocial.png",
-        imageAlt: "GopherSocial project screenshot",
-        links: [
-          {
-            label: "GitHub",
-            href: "https://github.com/martinrgarciap/GopherSocial",
           },
         ],
       },
