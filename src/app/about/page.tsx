@@ -2,33 +2,36 @@ import { ExperienceTimeline, SectionBlock } from "@/components";
 
 const TIMELINE = [
   {
-    title: "Scrum Master",
+    title: "Software Developer & Scrum Master Intern",
     org: "Auto Loans Services Canada",
-    date: "Jun 2024 - Jan 2026",
+    date: "June 2024 - Present",
+    location: "Toronto, ON",
     bullets: [
-      "Facilitated sprint ceremonies, backlog refinement, and team alignment across cross-functional work.",
-      "Tracked delivery health through Jira boards, dashboards, and Agile metrics.",
-      "Led retrospectives and follow-ups that improved visibility, rhythm, and execution.",
+      "Developed React and TypeScript features for an internal auto finance lead-management platform, enabling finance managers to search, filter, contact, and update leads throughout the loan-approval workflow.",
+      "Contributed to a Go lead service and React integration via REST and gRPC APIs, using MongoDB, Redis, and AWS while writing tests, validating changes, and reviewing code.",
+      "Facilitated stand-ups, sprint planning, and backlog refinement; translated requirements into user stories and acceptance criteria, tracked blockers, and coordinated frontend, backend, and QA delivery.",
     ],
   },
   {
     title: "Software Engineer",
     org: "Influitive",
-    date: "Jan 2022 - Jun 2024",
+    date: "January 2022 - January 2024",
+    location: "Toronto, ON",
     bullets: [
-      "Built and maintained customer-facing web applications used by large enterprise clients.",
-      "Developed reusable React and Next.js components with TypeScript and clean frontend patterns.",
-      "Integrated frontend work with GraphQL and REST APIs while improving UI quality and reliability.",
+      "Developed and maintained customer-facing web applications used by 400+ enterprise customers, shipping production features for organizations including AWS, Adobe, Cisco, and IBM.",
+      "Built reusable, well-documented components with React, Next.js, TypeScript, and Storybook, improving app performance by 30% through optimized rendering, clean code practices, and peer reviews.",
+      "Implemented responsive, accessible, API-driven interfaces integrated with REST and GraphQL services, maintaining SEO, automated testing, and code quality across customer-facing workflows.",
+      "Shipped full-stack features by pairing React UI changes with Go REST API updates, PostgreSQL-backed data access, integration debugging, production validation, and unit and integration testing.",
+      "Reduced UI rendering overhead by 20% through debugging, error handling, API query optimization, and performance tuning while supporting CI/CD deployments across AWS and GCP.",
     ],
   },
   {
     title: "Area Supervisor",
     org: "Canada's Wonderland",
-    date: "Sept 2019 - Jun 2021",
+    date: "September 2019 - June 2021",
+    location: "Vaughan, ON",
     bullets: [
-      "Oversaw operations across multiple high-volume food and beverage locations.",
-      "Led frontline teams, handled staffing decisions, and maintained service standards during peak demand.",
-      "Balanced team coordination, guest experience, and day-to-day execution in fast-paced environments.",
+      "Triaged POS hardware and software incidents by investigating errors, documenting symptoms and operational impact, resolving common issues, and escalating complex failures to IT teams to minimize downtime.",
     ],
   },
 ];

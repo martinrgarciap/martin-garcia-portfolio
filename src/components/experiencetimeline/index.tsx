@@ -2,6 +2,7 @@ type TimelineEntry = {
   title: string;
   org: string;
   date: string;
+  location?: string;
   bullets: string[];
 };
 
@@ -41,7 +42,10 @@ export default function ExperienceTimeline({ items }: ExperienceTimelineProps) {
                   </span>
                 </div>
 
-                <p className="text-sm text-slate-400">{item.date}</p>
+                <p className="text-sm text-slate-400">
+                  {item.date}
+                  {item.location ? `, ${item.location}` : ""}
+                </p>
               </div>
 
               <ul className="mt-4 space-y-3">
