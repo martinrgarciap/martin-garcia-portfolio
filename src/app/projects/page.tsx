@@ -38,6 +38,35 @@ const groups: ProjectGroup[] = [
     subheading: "Products and full-stack apps I’ve built.",
     projects: [
       {
+        title: "VaultForge",
+        subtitle: "Full-stack developer secrets vault",
+        description:
+          "A full-stack developer secrets vault built with a Go REST API, React, TypeScript, PostgreSQL, and Redis. Includes session authentication, rate limiting, optimistic concurrency, soft deletion, managed clipboard privacy, OpenTelemetry tracing, comprehensive automated testing, and deployment through Vercel and Railway.",
+        tags: [
+          { label: "Go", tone: "emerald" },
+          { label: "React", tone: "sky" },
+          { label: "TypeScript", tone: "violet" },
+          { label: "PostgreSQL", tone: "amber" },
+          { label: "Redis", tone: "violet" },
+          { label: "Docker", tone: "sky" },
+          { label: "OpenTelemetry", tone: "emerald" },
+          { label: "Playwright", tone: "amber" },
+        ],
+        imageSrc: "/Vaultforge.png",
+        imageAlt: "VaultForge password manager project screenshot",
+        links: [
+          {
+            label: "Live Demo",
+            href: "https://vaultforge-bay.vercel.app/",
+          },
+          {
+            label: "GitHub",
+            href: "https://github.com/martinrgarciap/vaultforge",
+          },
+        ],
+        featured: true,
+      },
+      {
         title: "RideShare",
         subtitle: "Distributed ride-sharing backend",
         description:
@@ -62,7 +91,6 @@ const groups: ProjectGroup[] = [
             href: "https://github.com/martinrgarciap/RideShare",
           },
         ],
-        featured: true,
       },
       {
         title: "GopherSocial",
